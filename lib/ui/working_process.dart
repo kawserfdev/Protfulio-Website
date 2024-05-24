@@ -19,9 +19,9 @@ class WorkingProcess extends StatelessWidget {
         child: Column(
           children: [
             Text('WORKING PROCESS', style: AppStyles.title),
-            Container(width: 100, height: 2, color: AppColors.yellow),
+            Container(width: 100, height: 2, color: AppColors.brand),
             const SizedBox(height: 3),
-            Container(width: 75, height: 2, color: AppColors.yellow),
+            Container(width: 75, height: 2, color: AppColors.brand),
             const SizedBox(height: 50),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -70,9 +70,9 @@ class WorkingProcess extends StatelessWidget {
               style: AppStyles.title,
               textAlign: TextAlign.center,
             ),
-            Container(width: 75, height: 2, color: AppColors.yellow),
+            Container(width: 75, height: 2, color: AppColors.brand),
             const SizedBox(height: 3),
-            Container(width: 50, height: 2, color: AppColors.yellow),
+            Container(width: 50, height: 2, color: AppColors.brand),
             const SizedBox(height: 50),
             __buildProcess(context, '01.', 'icons/pencil.png', 'Plan',
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor laboris nisi ut aliquip ex ea commodo.'),
@@ -101,7 +101,7 @@ class WorkingProcess extends StatelessWidget {
               alignment: Alignment.topRight,
               child: Text(
                 index,
-                style:  TextStyle(
+                style: TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.w700,
                 ),

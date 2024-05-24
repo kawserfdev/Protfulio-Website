@@ -6,10 +6,10 @@ import '../config/constants.dart';
 import '../config/colors.dart';
 
 class Header extends StatelessWidget {
-  final String _name = "Abdelouahed";
-  final String _job = "Mobile Developer";
+  final String _name = "Md. Kawser Ahmed";
+  final String _job = "Software Developer";
   final String _description =
-      "I am developer has around 4 years experience developing mobile and web applications, using different languages and techniques.";
+      "I am developer has around 2 years experience developing mobile applications, using fart languages in Flutter framwork and techniques.";
 
   @override
   Widget build(BuildContext context) => ResponsiveWidget(
@@ -23,7 +23,7 @@ class Header extends StatelessWidget {
             children: [
               Text(
                 'I’m $_name',
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 40,
                   fontWeight: FontWeight.w900,
@@ -32,7 +32,7 @@ class Header extends StatelessWidget {
               Text(
                 _job,
                 style: TextStyle(
-                  color: AppColors.yellow,
+                  color: AppColors.greyLight,
                   fontSize: 40,
                   fontWeight: FontWeight.w900,
                 ),
@@ -50,13 +50,17 @@ class Header extends StatelessWidget {
               ),
               const SizedBox(height: 30),
               ElevatedButton(
-                style: ButtonStyle(
-                  padding: MaterialStatePropertyAll(const EdgeInsets.symmetric(horizontal: 30, vertical: 20),),
-                  backgroundColor: MaterialStatePropertyAll(AppColors.yellow),
-                  textStyle: MaterialStatePropertyAll(TextStyle(color:Colors.white, )),
+                style: const ButtonStyle(
+                  padding: MaterialStatePropertyAll(
+                    EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                  ),
+                  backgroundColor: MaterialStatePropertyAll(AppColors.brand),
+                  textStyle: MaterialStatePropertyAll(TextStyle(
+                    color: Colors.white,
+                  )),
                 ),
                 onPressed: _downloadCV,
-                child: Text('Download CV'),
+                child: Text('Download CV',style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Colors.white),),
               ),
               const SizedBox(height: 100),
             ],
@@ -81,7 +85,7 @@ class Header extends StatelessWidget {
                 Text(
                   _job,
                   style: TextStyle(
-                    color: AppColors.yellow,
+                    color: AppColors.brand,
                     fontSize: 30,
                     fontWeight: FontWeight.w900,
                   ),
@@ -102,11 +106,14 @@ class Header extends StatelessWidget {
                 const SizedBox(height: 30),
                 ElevatedButton(
                   style: ButtonStyle(
-                  padding: MaterialStatePropertyAll(const EdgeInsets.symmetric(horizontal: 30, vertical: 20),),
-                  backgroundColor: MaterialStatePropertyAll(AppColors.yellow),
-                  textStyle: MaterialStatePropertyAll(TextStyle(color:Colors.white, )),
-                ),
-                  
+                    padding: MaterialStatePropertyAll(
+                      const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                    ),
+                    backgroundColor: MaterialStatePropertyAll(AppColors.brand),
+                    textStyle: MaterialStatePropertyAll(TextStyle(
+                      color: Colors.white,
+                    )),
+                  ),
                   onPressed: _downloadCV,
                   child: Text('Download CV'),
                 ),

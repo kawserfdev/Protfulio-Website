@@ -47,7 +47,7 @@ class _HomeState extends State<Home> {
     return ResponsiveWidget(
       desktopScreen: Scaffold(
         body: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('images/background.jpg'),
               fit: BoxFit.cover,
@@ -64,12 +64,12 @@ class _HomeState extends State<Home> {
                 flexibleSpace: Container(
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage('images/cover.jpg'),
+                      image: AssetImage('assets/logo.jpg'),
                       fit: BoxFit.cover,
                     ),
                   ),
                   child: Container(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       gradient: LinearGradient(
                         begin: Alignment.bottomCenter,
                         end: Alignment.topCenter,
@@ -91,8 +91,8 @@ class _HomeState extends State<Home> {
                     child: Container(
                       width: 40,
                       height: 40,
-                      color: AppColors.yellow,
-                      child: Image.asset('images/ouahid.png'),
+                      color: AppColors.brand,
+                      child: Image.asset('assets/logo.jpg'),
                     ),
                   ),
                 ),
@@ -140,10 +140,16 @@ class _HomeState extends State<Home> {
                       ElevatedButton(
                         onPressed: _scrollToContactUs,
                         style: ButtonStyle(
-                  padding: MaterialStatePropertyAll(const EdgeInsets.symmetric(horizontal: 40, vertical: 15),),
-                  backgroundColor: MaterialStatePropertyAll(AppColors.yellow),
-                  textStyle: MaterialStatePropertyAll(TextStyle(color:Colors.white, )),
-                ),
+                          padding: MaterialStatePropertyAll(
+                            const EdgeInsets.symmetric(
+                                horizontal: 40, vertical: 15),
+                          ),
+                          backgroundColor:
+                              MaterialStatePropertyAll(AppColors.brand),
+                          textStyle: MaterialStatePropertyAll(TextStyle(
+                            color: Colors.white,
+                          )),
+                        ),
                         child: Text(
                           'Contact Me',
                           style: TextStyle(
@@ -171,7 +177,7 @@ class _HomeState extends State<Home> {
                   height: 100,
                   margin: const EdgeInsets.symmetric(vertical: 20),
                   decoration: BoxDecoration(
-                    color: AppColors.yellow,
+                    color: AppColors.brand,
                     borderRadius: BorderRadius.circular(1000),
                   ),
                   child: ClipRRect(
@@ -217,9 +223,13 @@ class _HomeState extends State<Home> {
                   title: ElevatedButton(
                     onPressed: _scrollToContactUs,
                     style: ButtonStyle(
-                  padding: MaterialStatePropertyAll(const EdgeInsets.symmetric(horizontal: 40, vertical: 15),),
-                  backgroundColor: MaterialStatePropertyAll(AppColors.yellow),
-                ),
+                      padding: MaterialStatePropertyAll(
+                        const EdgeInsets.symmetric(
+                            horizontal: 40, vertical: 15),
+                      ),
+                      backgroundColor:
+                          MaterialStatePropertyAll(AppColors.brand),
+                    ),
                     child: Text(
                       'Contact Me',
                       style: TextStyle(fontWeight: FontWeight.bold),
@@ -302,7 +312,7 @@ class _HomeState extends State<Home> {
                         child: Container(
                           width: 40,
                           height: 40,
-                          color: AppColors.yellow,
+                          color: AppColors.brand,
                           child: Image.asset('images/ouahid.png'),
                         ),
                       ),

@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         visualDensity: VisualDensity.adaptivePlatformDensity,
         colorScheme:
-            ColorScheme.fromSwatch().copyWith(secondary: AppColors.yellow),
+            ColorScheme.fromSwatch().copyWith(secondary: AppColors.brand),
       ),
       home: Home(),
     );

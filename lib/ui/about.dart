@@ -7,7 +7,7 @@ import '../config/styles.dart';
 import '../config/colors.dart';
 
 class About extends StatelessWidget {
-  final String _avatar = 'images/ouahid.png';
+  final String _avatar = 'assets/ouahid.png';
   final String _description =
       "I am developer has around 4 years experience developing mobile and web applications, using different languages and techniques.";
 
@@ -43,7 +43,7 @@ class About extends StatelessWidget {
                         Text(
                           'ABOUT ME',
                           style: TextStyle(
-                            color: AppColors.yellow,
+                            color: AppColors.brand,
                             fontSize: 40,
                             fontWeight: FontWeight.bold,
                           ),
@@ -67,7 +67,7 @@ class About extends StatelessWidget {
                                       horizontal: 30, vertical: 20),
                                 ),
                                 backgroundColor:
-                                    MaterialStatePropertyAll(AppColors.yellow),
+                                    MaterialStatePropertyAll(AppColors.brand),
                                 textStyle: MaterialStatePropertyAll(TextStyle(
                                   color: Colors.white,
                                 )),
@@ -99,9 +99,9 @@ class About extends StatelessWidget {
               ),
               const SizedBox(height: 100),
               Text('MY SKILLS', style: AppStyles.title),
-              Container(width: 100, height: 2, color: AppColors.yellow),
+              Container(width: 100, height: 2, color: AppColors.brand),
               const SizedBox(height: 3),
-              Container(width: 75, height: 2, color: AppColors.yellow),
+              Container(width: 75, height: 2, color: AppColors.brand),
               const SizedBox(height: 50),
               Wrap(
                 spacing: 25,
@@ -136,7 +136,7 @@ class About extends StatelessWidget {
               Text(
                 'ABOUT ME',
                 style: TextStyle(
-                  color: AppColors.yellow,
+                  color: AppColors.brand,
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
@@ -156,7 +156,7 @@ class About extends StatelessWidget {
                     padding: MaterialStatePropertyAll(
                       const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
                     ),
-                    backgroundColor: MaterialStatePropertyAll(AppColors.yellow),
+                    backgroundColor: MaterialStatePropertyAll(AppColors.brand),
                     textStyle: MaterialStatePropertyAll(TextStyle(
                       color: Colors.white,
                     ))),
@@ -178,9 +178,9 @@ class About extends StatelessWidget {
               ),
               const SizedBox(height: 50),
               Text('MY SKILLS', style: AppStyles.title),
-              Container(width: 75, height: 2, color: AppColors.yellow),
+              Container(width: 75, height: 2, color: AppColors.brand),
               const SizedBox(height: 3),
-              Container(width: 50, height: 2, color: AppColors.yellow),
+              Container(width: 50, height: 2, color: AppColors.brand),
               const SizedBox(height: 25),
               Wrap(
                 spacing: 10,

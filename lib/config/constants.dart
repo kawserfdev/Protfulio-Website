@@ -1,19 +1,19 @@
 mixin AppConstants {
-  static final String mail = 'abdeluached@gmail.com';
+  static final String mail = 'kawserahmed5459@gmail.com';
 
-  static final String phone = '(+213) 06 xx xx xx xx';
+  static final String phone = '01925286359';
 
-  static final String location = 'Touggourt, Ouargla, Algeria';
+  static final String location = 'Muhammadpur, Dhaka-1207';
 
-  static final String github = 'https://github.com/GeekAbdelouahed';
+  static final String github = 'https://github.com/alifsoftdev';
 
   static final String linkedin =
-      'https://www.linkedin.com/in/abdelouahed-medjoudja';
+      'https://www.linkedin.com/in/alifsoftdev';
 
-  static final String twitter = 'https://twitter.com/MedAbdelouahed';
+  static final String twitter = 'https://twitter.com/alifsoftdev';
 
   static final String facebook =
-      'https://www.facebook.com/AbdelouahedMedjoudja';
+      'https://www.facebook.com/alifsoftdev';
 
-  static final String cv = 'YOUR-CV-URL'; // TODO
+  static const String cv = 'https://firebasestorage.googleapis.com/v0/b/profulio.appspot.com/o/CV.pdf?alt=media&token=96ad8767-48ed-4cb6-8d6f-8f4bcd9180d6'; // TODO
 }

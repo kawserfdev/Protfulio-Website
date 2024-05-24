@@ -34,9 +34,9 @@ class _ContactUsState extends State<ContactUs> {
         child: Column(
           children: [
             Text('GET IN TOUCH', style: AppStyles.title),
-            Container(width: 100, height: 2, color: AppColors.yellow),
+            Container(width: 100, height: 2, color: AppColors.brand),
             const SizedBox(height: 3),
-            Container(width: 75, height: 2, color: AppColors.yellow),
+            Container(width: 75, height: 2, color: AppColors.brand),
             const SizedBox(height: 50),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -86,9 +86,9 @@ class _ContactUsState extends State<ContactUs> {
               style: AppStyles.title,
               textAlign: TextAlign.center,
             ),
-            Container(width: 75, height: 2, color: AppColors.yellow),
+            Container(width: 75, height: 2, color: AppColors.brand),
             const SizedBox(height: 3),
-            Container(width: 50, height: 2, color: AppColors.yellow),
+            Container(width: 50, height: 2, color: AppColors.brand),
             const SizedBox(height: 50),
             Column(
               children: [
@@ -219,9 +219,13 @@ class _ContactUsState extends State<ContactUs> {
               const SizedBox(height: 20),
               ElevatedButton(
                 style: ButtonStyle(
-                  padding: MaterialStatePropertyAll(const EdgeInsets.symmetric(horizontal: 30, vertical: 20),),
-                  backgroundColor: MaterialStatePropertyAll(AppColors.yellow),
-                  textStyle: MaterialStatePropertyAll(TextStyle(color:Colors.white, )),
+                  padding: MaterialStatePropertyAll(
+                    const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                  ),
+                  backgroundColor: MaterialStatePropertyAll(AppColors.brand),
+                  textStyle: MaterialStatePropertyAll(TextStyle(
+                    color: Colors.white,
+                  )),
                 ),
                 onPressed: _sendMail,
                 child: Text('Send'),
