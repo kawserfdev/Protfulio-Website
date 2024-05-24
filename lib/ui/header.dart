@@ -9,7 +9,9 @@ class Header extends StatelessWidget {
   final String _name = "Md. Kawser Ahmed";
   final String _job = "Software Developer";
   final String _description =
-      "I am developer has around 2 years experience developing mobile applications, using fart languages in Flutter framwork and techniques.";
+      "I am developer has around 2.5 years experience developing mobile applications, using fart languages in Flutter framwork and techniques.";
+
+  const Header({super.key});
 
   @override
   Widget build(BuildContext context) => ResponsiveWidget(
@@ -42,7 +44,7 @@ class Header extends StatelessWidget {
                 width: MediaQuery.of(context).size.width / 2,
                 child: Text(
                   _description,
-                  style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         color: Colors.grey[100],
                         fontSize: 17,
                       ),
@@ -76,7 +78,7 @@ class Header extends StatelessWidget {
               children: [
                 Text(
                   'I’m $_name',
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 30,
                     fontWeight: FontWeight.w900,
@@ -84,8 +86,8 @@ class Header extends StatelessWidget {
                 ),
                 Text(
                   _job,
-                  style: TextStyle(
-                    color: AppColors.brand,
+                  style: const TextStyle(
+                    color: Colors.white,
                     fontSize: 30,
                     fontWeight: FontWeight.w900,
                   ),
@@ -95,7 +97,7 @@ class Header extends StatelessWidget {
                   width: MediaQuery.of(context).size.width,
                   child: Text(
                     _description,
-                    style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           color: Colors.grey[100],
                           fontSize: 15,
                           height: 1.8,
@@ -105,9 +107,9 @@ class Header extends StatelessWidget {
                 ),
                 const SizedBox(height: 30),
                 ElevatedButton(
-                  style: ButtonStyle(
+                  style: const ButtonStyle(
                     padding: MaterialStatePropertyAll(
-                      const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                      EdgeInsets.symmetric(horizontal: 30, vertical: 20),
                     ),
                     backgroundColor: MaterialStatePropertyAll(AppColors.brand),
                     textStyle: MaterialStatePropertyAll(TextStyle(
@@ -115,7 +117,9 @@ class Header extends StatelessWidget {
                     )),
                   ),
                   onPressed: _downloadCV,
-                  child: Text('Download CV'),
+                  child: const Text('Download CV',style: TextStyle(
+                      color: Colors.white,
+                    ),),
                 ),
                 const SizedBox(height: 100),
               ],
@@ -125,6 +129,7 @@ class Header extends StatelessWidget {
       );
 
   void _downloadCV() {
+    // ignore: deprecated_member_use
     launch(AppConstants.cv);
   }
 }

@@ -30,7 +30,7 @@ class WorkingProcess extends StatelessWidget {
                   child: __buildProcess(
                       context,
                       '01.',
-                      'icons/pencil.png',
+                      'assets/plan.png',
                       'Plan',
                       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor laboris nisi ut aliquip ex ea commodo.'),
                 ),
@@ -39,7 +39,7 @@ class WorkingProcess extends StatelessWidget {
                   child: __buildProcess(
                       context,
                       '02.',
-                      'icons/design.png',
+                      'assets/design.png',
                       'Design',
                       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor laboris nisi ut aliquip ex ea commodo.'),
                 ),
@@ -48,7 +48,7 @@ class WorkingProcess extends StatelessWidget {
                   child: __buildProcess(
                       context,
                       '03.',
-                      'icons/coding.png',
+                      'assets/code.png',
                       'Code',
                       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor laboris nisi ut aliquip ex ea commodo.'),
                 )
@@ -74,13 +74,13 @@ class WorkingProcess extends StatelessWidget {
             const SizedBox(height: 3),
             Container(width: 50, height: 2, color: AppColors.brand),
             const SizedBox(height: 50),
-            __buildProcess(context, '01.', 'icons/pencil.png', 'Plan',
+            __buildProcess(context, '01.', 'assets/plan.png', 'Plan',
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor laboris nisi ut aliquip ex ea commodo.'),
             const SizedBox(height: 10),
-            __buildProcess(context, '02.', 'icons/design.png', 'Design',
+            __buildProcess(context, '02.', 'assets/design.png', 'Design',
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor laboris nisi ut aliquip ex ea commodo.'),
             const SizedBox(height: 10),
-            __buildProcess(context, '03.', 'icons/coding.png', 'Code',
+            __buildProcess(context, '03.', 'assets/code.png', 'Code',
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor laboris nisi ut aliquip ex ea commodo.'),
           ],
         ),
@@ -101,7 +101,7 @@ class WorkingProcess extends StatelessWidget {
               alignment: Alignment.topRight,
               child: Text(
                 index,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.w700,
                 ),
@@ -114,7 +114,7 @@ class WorkingProcess extends StatelessWidget {
             const SizedBox(height: 20),
             Text(
               title,
-              style: TextStyle(
+              style: const TextStyle(
                 color: AppColors.black,
                 fontSize: 25,
                 fontWeight: FontWeight.bold,
@@ -123,7 +123,7 @@ class WorkingProcess extends StatelessWidget {
             const SizedBox(height: 10),
             Text(
               description,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.black45,
               ),
               textAlign: TextAlign.center,

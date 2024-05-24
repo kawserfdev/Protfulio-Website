@@ -7,9 +7,11 @@ import '../config/styles.dart';
 import '../config/colors.dart';
 
 class About extends StatelessWidget {
-  final String _avatar = 'assets/ouahid.png';
+  final String _avatar = 'assets/profile.jpg';
   final String _description =
-      "I am developer has around 4 years experience developing mobile and web applications, using different languages and techniques.";
+      "I am developer has around 2.5 years experience developing mobile applications, using Dart languages in Flutter framwork";
+
+  const About({super.key});
 
   @override
   Widget build(BuildContext context) => ResponsiveWidget(
@@ -29,8 +31,8 @@ class About extends StatelessWidget {
                       color: AppColors.greyLight,
                       child: Image.asset(
                         _avatar,
-                        width: 300,
-                        height: 300,
+                        width: 250,
+                        height:250,
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -40,7 +42,7 @@ class About extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           'ABOUT ME',
                           style: TextStyle(
                             color: AppColors.brand,
@@ -61,9 +63,9 @@ class About extends StatelessWidget {
                           children: [
                             ElevatedButton(
                               onPressed: () {},
-                              style: ButtonStyle(
+                              style: const ButtonStyle(
                                 padding: MaterialStatePropertyAll(
-                                  const EdgeInsets.symmetric(
+                                  EdgeInsets.symmetric(
                                       horizontal: 30, vertical: 20),
                                 ),
                                 backgroundColor:
@@ -72,23 +74,27 @@ class About extends StatelessWidget {
                                   color: Colors.white,
                                 )),
                               ),
-                              child: Text('HIRE ME NOW'),
+                              child: const Text('HIRE ME NOW',style: TextStyle(
+                                  color: Colors.white,
+                                ),),
                             ),
                             const SizedBox(width: 20),
                             ElevatedButton(
                               onPressed: _downloadCV,
-                              style: ButtonStyle(
+                              style: const ButtonStyle(
                                 padding: MaterialStatePropertyAll(
-                                  const EdgeInsets.symmetric(
+                                  EdgeInsets.symmetric(
                                       horizontal: 30, vertical: 20),
                                 ),
                                 backgroundColor:
-                                    MaterialStatePropertyAll(AppColors.black),
+                                    MaterialStatePropertyAll(AppColors.brand),
                                 textStyle: MaterialStatePropertyAll(TextStyle(
                                   color: Colors.white,
                                 )),
                               ),
-                              child: Text('VIEW RESUME'),
+                              child: const Text('VIEW RESUME',style: TextStyle(
+                                  color: Colors.white,
+                                ),),
                             ),
                           ],
                         ),
@@ -133,7 +139,7 @@ class About extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              Text(
+              const Text(
                 'ABOUT ME',
                 style: TextStyle(
                   color: AppColors.brand,
@@ -152,29 +158,33 @@ class About extends StatelessWidget {
               const SizedBox(height: 30),
               ElevatedButton(
                 onPressed: () {},
-                style: ButtonStyle(
+                style: const ButtonStyle(
                     padding: MaterialStatePropertyAll(
-                      const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                      EdgeInsets.symmetric(horizontal: 30, vertical: 20),
                     ),
                     backgroundColor: MaterialStatePropertyAll(AppColors.brand),
                     textStyle: MaterialStatePropertyAll(TextStyle(
                       color: Colors.white,
                     ))),
-                child: Text('HIRE ME NOW'),
+                child: const Text('HIRE ME NOW',style: TextStyle(
+                                  color: Colors.white,
+                                ),),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: _downloadCV,
-                style: ButtonStyle(
+                style: const ButtonStyle(
                   padding: MaterialStatePropertyAll(
-                    const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                    EdgeInsets.symmetric(horizontal: 30, vertical: 20),
                   ),
-                  backgroundColor: MaterialStatePropertyAll(AppColors.black),
+                  backgroundColor: MaterialStatePropertyAll(AppColors.brand),
                   textStyle: MaterialStatePropertyAll(TextStyle(
                     color: Colors.white,
                   )),
                 ),
-                child: Text('VIEW RESUME'),
+                child: const Text('VIEW RESUME',style: TextStyle(
+                                  color: Colors.white,
+                                ),),
               ),
               const SizedBox(height: 50),
               Text('MY SKILLS', style: AppStyles.title),
@@ -201,3 +211,5 @@ class About extends StatelessWidget {
 
   Widget _buildSkill(Skill skill) => Chip(label: Text(skill.name!));
 }
+
+

@@ -5,6 +5,8 @@ import 'responsive_widget.dart';
 import 'icon.dart';
 
 class Statistics extends StatelessWidget {
+  const Statistics({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ResponsiveWidget(
@@ -17,11 +19,11 @@ class Statistics extends StatelessWidget {
         child:
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           _buildStatistic(
-              context, 'icons/briefcase.png', '4+', 'Years of Experience'),
-          _buildStatistic(context, 'icons/menu.png', '${PROJECTS.length}+',
+              context, 'assets/experience.png', '2.5+', 'Years of Experience'),
+          _buildStatistic(context, 'assets/tick.png', '${PROJECTS.length}+',
               'Projects Done'),
-          _buildStatistic(context, 'icons/happy.png', '50+', 'Happy Clients'),
-          _buildStatistic(context, 'icons/coffee.png', '∞', 'Coffee Cups'),
+          _buildStatistic(context, 'assets/happy.png', '5+', 'Happy Clients'),
+          _buildStatistic(context, 'assets/coffee.png', '∞', 'Coffee Cups'),
         ]),
       ),
       mobileScreen: Container(
@@ -33,14 +35,14 @@ class Statistics extends StatelessWidget {
         child: Column(
           children: [
             _buildStatistic(
-                context, 'icons/briefcase.png', '4+', 'Years of Experience'),
+                context, 'assets/experience.png', '2.5+', 'Years of Experience'),
             const SizedBox(height: 50),
-            _buildStatistic(context, 'icons/menu.png', '${PROJECTS.length}+',
+            _buildStatistic(context, 'assets/tick.png', '${PROJECTS.length}+',
                 'Projects Done'),
             const SizedBox(height: 50),
-            _buildStatistic(context, 'icons/happy.png', '50+', 'Happy Clients'),
+            _buildStatistic(context, 'assets/happy.png', '5+', 'Happy Clients'),
             const SizedBox(height: 50),
-            _buildStatistic(context, 'icons/coffee.png', '∞', 'Coffee Cups'),
+            _buildStatistic(context, 'assets/coffee.png', '∞', 'Coffee Cups'),
           ],
         ),
       ),
@@ -57,7 +59,7 @@ class Statistics extends StatelessWidget {
           const SizedBox(height: 5),
           Text(
             total,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
               fontSize: 50,
               fontWeight: FontWeight.w800,
@@ -66,7 +68,7 @@ class Statistics extends StatelessWidget {
           const SizedBox(height: 5),
           Text(
             description,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
               fontSize: 20,
               fontWeight: FontWeight.w700,
@@ -81,7 +83,7 @@ class Statistics extends StatelessWidget {
           const SizedBox(height: 5),
           Text(
             total,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
               fontSize: 30,
               fontWeight: FontWeight.w800,
@@ -90,7 +92,7 @@ class Statistics extends StatelessWidget {
           const SizedBox(height: 5),
           Text(
             description,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
               fontSize: 15,
               fontWeight: FontWeight.w700,

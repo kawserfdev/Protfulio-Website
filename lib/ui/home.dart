@@ -1,9 +1,7 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:profile/ui/responsive_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import 'about.dart';
 import 'contact_us.dart';
 import 'footer.dart';
@@ -16,7 +14,7 @@ import '../config/colors.dart';
 import '../config/constants.dart';
 
 class Home extends StatefulWidget {
-  Home({Key? key}) : super(key: key);
+  const Home({Key? key}) : super(key: key);
 
   @override
   _HomeState createState() => _HomeState();
@@ -62,9 +60,9 @@ class _HomeState extends State<Home> {
                 toolbarHeight: 100,
                 backgroundColor: Colors.transparent,
                 flexibleSpace: Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage('assets/logo.jpg'),
+                      image: AssetImage('assets/background.jpg'),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -96,7 +94,7 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                 ),
-                bottom: PreferredSize(
+                bottom: const PreferredSize(
                   preferredSize: Size.fromHeight(500),
                   child: Header(),
                 ),
@@ -106,7 +104,7 @@ class _HomeState extends State<Home> {
                       MaterialButton(
                         onPressed: _scrollToAbout,
                         highlightColor: Colors.white60,
-                        child: Text(
+                        child: const Text(
                           'About Me',
                           style: TextStyle(
                               color: Colors.white, fontWeight: FontWeight.bold),
@@ -114,7 +112,7 @@ class _HomeState extends State<Home> {
                       ),
                       MaterialButton(
                         onPressed: _scrollToStatistics,
-                        child: Text(
+                        child: const Text(
                           'Experience',
                           style: TextStyle(
                               color: Colors.white, fontWeight: FontWeight.bold),
@@ -122,7 +120,7 @@ class _HomeState extends State<Home> {
                       ),
                       MaterialButton(
                         onPressed: _scrollToWorkingProcess,
-                        child: Text(
+                        child: const Text(
                           'Process',
                           style: TextStyle(
                               color: Colors.white, fontWeight: FontWeight.bold),
@@ -130,7 +128,7 @@ class _HomeState extends State<Home> {
                       ),
                       MaterialButton(
                         onPressed: _scrollToRecentProjects,
-                        child: Text(
+                        child: const Text(
                           'Portfolio',
                           style: TextStyle(
                               color: Colors.white, fontWeight: FontWeight.bold),
@@ -139,10 +137,9 @@ class _HomeState extends State<Home> {
                       const SizedBox(width: 20),
                       ElevatedButton(
                         onPressed: _scrollToContactUs,
-                        style: ButtonStyle(
+                        style: const ButtonStyle(
                           padding: MaterialStatePropertyAll(
-                            const EdgeInsets.symmetric(
-                                horizontal: 40, vertical: 15),
+                            EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                           ),
                           backgroundColor:
                               MaterialStatePropertyAll(AppColors.brand),
@@ -150,7 +147,7 @@ class _HomeState extends State<Home> {
                             color: Colors.white,
                           )),
                         ),
-                        child: Text(
+                        child: const Text(
                           'Contact Me',
                           style: TextStyle(
                               color: Colors.white, fontWeight: FontWeight.bold),
@@ -183,56 +180,56 @@ class _HomeState extends State<Home> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(1000),
                     child: Image.asset(
-                      'images/ouahid.png',
+                      'assets/logo.jpg',
                       fit: BoxFit.cover,
                     ),
                   ),
                 ),
-                Divider(),
+                const Divider(),
                 ListTile(
                   onTap: _scrollToAbout,
-                  title: Text(
+                  title: const Text(
                     'About Me',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
                 ListTile(
                   onTap: _scrollToStatistics,
-                  title: Text(
+                  title: const Text(
                     'Experience',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
                 ListTile(
                   onTap: _scrollToWorkingProcess,
-                  title: Text(
+                  title: const Text(
                     'Process',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
                 ListTile(
                   onTap: _scrollToRecentProjects,
-                  title: Text(
+                  title: const Text(
                     'Portfolio',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
-                Divider(),
+                const Divider(),
                 const SizedBox(height: 20),
                 ListTile(
                   title: ElevatedButton(
                     onPressed: _scrollToContactUs,
-                    style: ButtonStyle(
+                    style: const ButtonStyle(
                       padding: MaterialStatePropertyAll(
-                        const EdgeInsets.symmetric(
-                            horizontal: 40, vertical: 15),
+                        EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                       ),
                       backgroundColor:
                           MaterialStatePropertyAll(AppColors.brand),
                     ),
-                    child: Text(
+                    child: const Text(
                       'Contact Me',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
@@ -242,10 +239,11 @@ class _HomeState extends State<Home> {
                   children: [
                     InkWell(
                       onTap: () async {
+                        // ignore: deprecated_member_use
                         launch(AppConstants.github);
                       },
-                      child: AppIcon(
-                        'icons/github.png',
+                      child: const AppIcon(
+                        'assets/github.png',
                         color: AppColors.black,
                       ),
                     ),
@@ -254,8 +252,8 @@ class _HomeState extends State<Home> {
                       onTap: () {
                         launch(AppConstants.linkedin);
                       },
-                      child: AppIcon(
-                        'icons/linkedin.png',
+                      child: const AppIcon(
+                        'assets/linkedin.png',
                         color: AppColors.black,
                       ),
                     ),
@@ -264,8 +262,8 @@ class _HomeState extends State<Home> {
                       onTap: () {
                         launch(AppConstants.twitter);
                       },
-                      child: AppIcon(
-                        'icons/twitter.png',
+                      child: const AppIcon(
+                        'assets/twitter.png',
                         color: AppColors.black,
                       ),
                     ),
@@ -274,8 +272,8 @@ class _HomeState extends State<Home> {
                       onTap: () {
                         launch(AppConstants.facebook);
                       },
-                      child: AppIcon(
-                        'icons/facebook.png',
+                      child: const AppIcon(
+                        'assets/facebook.png',
                         color: AppColors.black,
                       ),
                     ),
@@ -287,20 +285,24 @@ class _HomeState extends State<Home> {
           ),
         ),
         body: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('images/background.jpg'),
+              image: AssetImage('assets/background.jpg'),
               fit: BoxFit.cover,
             ),
           ),
           child: CustomScrollView(
             controller: _scrollController,
             slivers: [
+              const SliverToBoxAdapter(
+                child: SizedBox(height: 20),
+              ),
               SliverAppBar(
                 key: _headerGlobalKey,
                 titleSpacing: 0,
                 centerTitle: true,
                 backgroundColor: Colors.transparent,
+                leadingWidth: 100,
                 leading: Align(
                   child: Builder(
                     builder: (ctx) => InkWell(
@@ -308,26 +310,27 @@ class _HomeState extends State<Home> {
                         Scaffold.of(ctx).openDrawer();
                       },
                       child: ClipRRect(
+                
                         borderRadius: BorderRadius.circular(1000),
                         child: Container(
                           width: 40,
                           height: 40,
                           color: AppColors.brand,
-                          child: Image.asset('images/ouahid.png'),
+                          child: Image.asset('assets/logo.jpg'),
                         ),
                       ),
                     ),
                   ),
                 ),
                 flexibleSpace: Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage('images/cover.jpg'),
+                      image: AssetImage('assets/background.jpg'),
                       fit: BoxFit.cover,
                     ),
                   ),
                   child: Container(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       gradient: LinearGradient(
                         begin: Alignment.bottomCenter,
                         end: Alignment.topCenter,
@@ -340,7 +343,7 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                 ),
-                bottom: PreferredSize(
+                bottom: const PreferredSize(
                   preferredSize: Size.fromHeight(350),
                   child: Header(),
                 ),
@@ -357,19 +360,19 @@ class _HomeState extends State<Home> {
   List<Widget> _slivers() => [
         SliverToBoxAdapter(
           key: _aboutGlobaleKey,
-          child: About(),
+          child: const About(),
         ),
         SliverToBoxAdapter(
           key: _statisticsGlobaleKey,
-          child: Statistics(),
+          child: const Statistics(),
         ),
         SliverToBoxAdapter(
           key: _workingProcessGlobaleKye,
-          child: WorkingProcess(),
+          child: const WorkingProcess(),
         ),
         SliverToBoxAdapter(
           key: _recentProjectsGlobaleKey,
-          child: MyProjects(),
+          child: const MyProjects(),
         ),
         SliverToBoxAdapter(
           key: _contactUsGlobaleKey,
@@ -393,7 +396,7 @@ class _HomeState extends State<Home> {
                 ? _scrollToHeader
                 : null, // make sure user cannot click when button hidden
             mini: true,
-            child: AppIcon('icons/double-up-arrow.png', size: 20),
+            child: const AppIcon('assets/up-arrow.png', size: 20),
           ),
         );
       },

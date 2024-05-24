@@ -7,20 +7,27 @@ import '../config/styles.dart';
 import '../config/colors.dart';
 
 class MyProjects extends StatelessWidget {
+  const MyProjects({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ResponsiveWidget(
       desktopScreen: Container(
         color: AppColors.greyLight,
-        padding: EdgeInsets.symmetric(vertical: 100),
+        padding: const EdgeInsets.symmetric(vertical: 100),
         child: Column(
           children: [
-            Text('MY PROJECTS', style: AppStyles.title),
-            Container(width: 100, height: 2, color: AppColors.brand),
+            Text('MY PROJECTS',
+                style: TextStyle(
+                  color: AppColors.greyLight,
+                  fontSize: 35,
+                  fontWeight: FontWeight.w700,
+                )),
+            Container(width: 100, height: 2, color: AppColors.greyLight),
             const SizedBox(height: 3),
-            Container(width: 75, height: 2, color: AppColors.brand),
+            Container(width: 75, height: 2, color: AppColors.greyLight),
             const SizedBox(height: 50),
-            ...PROJECTS.map((p) => _buildProject(context, p)).toList(),
+            ...PROJECTS.map((p) => _buildProject(context, p)),
           ],
         ),
       ),
@@ -57,11 +64,14 @@ class MyProjects extends StatelessWidget {
         desktopScreen: SizedBox(
           width: MediaQuery.of(context).size.width * .7,
           child: Column(
+
             children: [
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
+
                 children: [
                   SizedBox(
+                    width: MediaQuery.of(context).size.width * .43,
                     height: MediaQuery.of(context).size.width * .3,
                     child: Image.asset(project.image!),
                   ),
@@ -95,25 +105,28 @@ class MyProjects extends StatelessWidget {
                             launch(project.url!);
                           },
                           style: ButtonStyle(
-                              padding: MaterialStatePropertyAll(
-                                const EdgeInsets.symmetric(
+                              padding: const MaterialStatePropertyAll(
+                                EdgeInsets.symmetric(
                                     horizontal: 50, vertical: 20),
                               ),
-                              backgroundColor:
-                                  MaterialStatePropertyAll(AppColors.brand),
-                              textStyle: MaterialStatePropertyAll(TextStyle(
+                              backgroundColor: const MaterialStatePropertyAll(
+                                  AppColors.brand),
+                              textStyle:
+                                  const MaterialStatePropertyAll(TextStyle(
                                 color: Colors.yellow,
                               )),
                               shape: MaterialStatePropertyAll(
                                 RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20),
                                   side: BorderSide(
-                                    color: AppColors.brand!.withOpacity(.5),
+                                    color: AppColors.brand.withOpacity(.5),
                                     width: 5,
                                   ),
                                 ),
                               )),
-                          child: Text('Visit'),
+                          child: const Text('Visit',style: TextStyle(
+                                color: Colors.white,
+                              )),
                         )
                       ],
                     ),
@@ -165,23 +178,26 @@ class MyProjects extends StatelessWidget {
                   launch(project.url!);
                 },
                 style: ButtonStyle(
-                    padding: MaterialStatePropertyAll(
-                      const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                    padding: const MaterialStatePropertyAll(
+                      EdgeInsets.symmetric(horizontal: 50, vertical: 20),
                     ),
-                    backgroundColor: MaterialStatePropertyAll(AppColors.brand),
-                    textStyle: MaterialStatePropertyAll(TextStyle(
+                    backgroundColor:
+                        const MaterialStatePropertyAll(AppColors.brand),
+                    textStyle: const MaterialStatePropertyAll(TextStyle(
                       color: Colors.yellow,
                     )),
                     shape: MaterialStatePropertyAll(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                         side: BorderSide(
-                          color: AppColors.brand!.withOpacity(.5),
+                          color: AppColors.brand.withOpacity(.5),
                           width: 5,
                         ),
                       ),
                     )),
-                child: Text('Visit'),
+                child: const Text('Visit',style: TextStyle(
+                                color: Colors.white,
+                              )),
               ),
               Divider(
                 color: AppColors.black.withOpacity(.1),
