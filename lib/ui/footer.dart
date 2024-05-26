@@ -166,14 +166,14 @@ class Footer extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(height: 20),
-                      Wrap(
-                        spacing: 10,
-                        runSpacing: 10,
-                        children: PROJECTS
-                            .take(4)
-                            .map((p) => _buildProject(context, p))
-                            .toList(),
-                      )
+                      // Wrap(
+                      //   spacing: 10,
+                      //   runSpacing: 10,
+                      //   children: PROJECTS
+                      //       .take(4)
+                      //       .map((p) => _buildProject(context, p))
+                      //       .toList(),
+                      // )
                     ],
                   ),
                 ),
@@ -341,14 +341,14 @@ class Footer extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 20),
-                Wrap(
-                  spacing: 10,
-                  runSpacing: 10,
-                  children: PROJECTS
-                      .take(4)
-                      .map((p) => _buildProject(context, p))
-                      .toList(),
-                )
+                // Wrap(
+                //   spacing: 10,
+                //   runSpacing: 10,
+                //   children: PROJECTS
+                //       .take(4)
+                //       .map((p) => _buildProject(context, p))
+                //       .toList(),
+                // )
               ],
             ),
             const SizedBox(height: 30),
