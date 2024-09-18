@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -12,8 +14,8 @@ import 'icon.dart';
 import 'my_projects.dart';
 import 'statistics.dart';
 import 'working_process.dart';
-import '../config/colors.dart';
-import '../config/constants.dart';
+import '../constant/colors.dart';
+import '../constant/constants.dart';
 
 class Home extends StatefulWidget {
   Home({Key? key}) : super(key: key);
@@ -47,9 +49,9 @@ class _HomeState extends State<Home> {
     return ResponsiveWidget(
       desktopScreen: Scaffold(
         body: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('images/background.jpg'),
+              image: AssetImage('assets/images/cover.jpg'),
               fit: BoxFit.cover,
             ),
           ),
@@ -62,14 +64,14 @@ class _HomeState extends State<Home> {
                 toolbarHeight: 100,
                 backgroundColor: Colors.transparent,
                 flexibleSpace: Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage('images/cover.jpg'),
+                      image: AssetImage('assets/images/background.jpg'),
                       fit: BoxFit.cover,
                     ),
                   ),
                   child: Container(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       gradient: LinearGradient(
                         begin: Alignment.bottomCenter,
                         end: Alignment.topCenter,
@@ -83,68 +85,89 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 title: Padding(
-                  padding: EdgeInsets.only(
-                    left: MediaQuery.of(context).size.width * .15,
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(1000),
-                    child: Container(
-                      width: 40,
-                      height: 40,
-                      color: AppColors.yellow,
-                      child: Image.asset('images/ouahid.png'),
+                    padding: EdgeInsets.only(
+                      left: MediaQuery.of(context).size.width * .15,
                     ),
-                  ),
-                ),
+                    child: const Text(
+                      "Kawser Ahmed",
+                      style: TextStyle(
+                          color: AppColors.primaryColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 24),
+                    )),
                 bottom: PreferredSize(
-                  preferredSize: Size.fromHeight(500),
+                  preferredSize: const Size.fromHeight(500),
                   child: Header(),
                 ),
                 actions: [
                   Row(
                     children: [
                       MaterialButton(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8)),
+                        color: AppColors.greyLight,
                         onPressed: _scrollToAbout,
                         highlightColor: Colors.white60,
-                        child: Text(
+                        child: const Text(
                           'About Me',
                           style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.bold),
+                              color: AppColors.primaryColor,
+                              fontWeight: FontWeight.bold),
                         ),
                       ),
+                      const SizedBox(width: 16),
                       MaterialButton(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8)),
+                        color: AppColors.greyLight,
                         onPressed: _scrollToStatistics,
-                        child: Text(
+                        child: const Text(
                           'Experience',
                           style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.bold),
+                              color: AppColors.primaryColor,
+                              fontWeight: FontWeight.bold),
                         ),
                       ),
+                      const SizedBox(width: 16),
                       MaterialButton(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8)),
+                        color: AppColors.greyLight,
                         onPressed: _scrollToWorkingProcess,
-                        child: Text(
+                        child: const Text(
                           'Process',
                           style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.bold),
+                              color: AppColors.primaryColor,
+                              fontWeight: FontWeight.bold),
                         ),
                       ),
+                      const SizedBox(width: 16),
                       MaterialButton(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8)),
+                        color: AppColors.greyLight,
                         onPressed: _scrollToRecentProjects,
-                        child: Text(
+                        child: const Text(
                           'Portfolio',
                           style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.bold),
+                              color: AppColors.primaryColor,
+                              fontWeight: FontWeight.bold),
                         ),
                       ),
                       const SizedBox(width: 20),
                       ElevatedButton(
                         onPressed: _scrollToContactUs,
-                        style: ButtonStyle(
-                  padding: MaterialStatePropertyAll(const EdgeInsets.symmetric(horizontal: 40, vertical: 15),),
-                  backgroundColor: MaterialStatePropertyAll(AppColors.yellow),
-                  textStyle: MaterialStatePropertyAll(TextStyle(color:Colors.white, )),
-                ),
-                        child: Text(
+                        style: const ButtonStyle(
+                          padding: WidgetStatePropertyAll(
+                            EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                          ),
+                          backgroundColor:
+                              WidgetStatePropertyAll(AppColors.primaryColor),
+                          textStyle: WidgetStatePropertyAll(TextStyle(
+                            color: Colors.white,
+                          )),
+                        ),
+                        child: const Text(
                           'Contact Me',
                           style: TextStyle(
                               color: Colors.white, fontWeight: FontWeight.bold),
@@ -171,56 +194,59 @@ class _HomeState extends State<Home> {
                   height: 100,
                   margin: const EdgeInsets.symmetric(vertical: 20),
                   decoration: BoxDecoration(
-                    color: AppColors.yellow,
+                    color: AppColors.primaryColor,
                     borderRadius: BorderRadius.circular(1000),
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(1000),
                     child: Image.asset(
-                      'images/ouahid.png',
+                      'assets/images/cover.jpg',
                       fit: BoxFit.cover,
                     ),
                   ),
                 ),
-                Divider(),
+                const Divider(),
                 ListTile(
                   onTap: _scrollToAbout,
-                  title: Text(
+                  title: const Text(
                     'About Me',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
                 ListTile(
                   onTap: _scrollToStatistics,
-                  title: Text(
+                  title: const Text(
                     'Experience',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
                 ListTile(
                   onTap: _scrollToWorkingProcess,
-                  title: Text(
+                  title: const Text(
                     'Process',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
                 ListTile(
                   onTap: _scrollToRecentProjects,
-                  title: Text(
+                  title: const Text(
                     'Portfolio',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
-                Divider(),
+                const Divider(),
                 const SizedBox(height: 20),
                 ListTile(
                   title: ElevatedButton(
                     onPressed: _scrollToContactUs,
-                    style: ButtonStyle(
-                  padding: MaterialStatePropertyAll(const EdgeInsets.symmetric(horizontal: 40, vertical: 15),),
-                  backgroundColor: MaterialStatePropertyAll(AppColors.yellow),
-                ),
-                    child: Text(
+                    style: const ButtonStyle(
+                      padding: WidgetStatePropertyAll(
+                        EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                      ),
+                      backgroundColor:
+                          WidgetStatePropertyAll(AppColors.primaryColor),
+                    ),
+                    child: const Text(
                       'Contact Me',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
@@ -234,8 +260,8 @@ class _HomeState extends State<Home> {
                       onTap: () async {
                         launch(AppConstants.github);
                       },
-                      child: AppIcon(
-                        'icons/github.png',
+                      child: const AppIcon(
+                        'assets/images/github.png',
                         color: AppColors.black,
                       ),
                     ),
@@ -244,7 +270,7 @@ class _HomeState extends State<Home> {
                       onTap: () {
                         launch(AppConstants.linkedin);
                       },
-                      child: AppIcon(
+                      child: const AppIcon(
                         'icons/linkedin.png',
                         color: AppColors.black,
                       ),
@@ -254,7 +280,7 @@ class _HomeState extends State<Home> {
                       onTap: () {
                         launch(AppConstants.twitter);
                       },
-                      child: AppIcon(
+                      child: const AppIcon(
                         'icons/twitter.png',
                         color: AppColors.black,
                       ),
@@ -264,7 +290,7 @@ class _HomeState extends State<Home> {
                       onTap: () {
                         launch(AppConstants.facebook);
                       },
-                      child: AppIcon(
+                      child: const AppIcon(
                         'icons/facebook.png',
                         color: AppColors.black,
                       ),
@@ -277,9 +303,9 @@ class _HomeState extends State<Home> {
           ),
         ),
         body: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('images/background.jpg'),
+              image: AssetImage('assets/images/background.jpg'),
               fit: BoxFit.cover,
             ),
           ),
@@ -287,37 +313,30 @@ class _HomeState extends State<Home> {
             controller: _scrollController,
             slivers: [
               SliverAppBar(
+                leadingWidth: double.infinity,
                 key: _headerGlobalKey,
                 titleSpacing: 0,
                 centerTitle: true,
                 backgroundColor: Colors.transparent,
-                leading: Align(
-                  child: Builder(
-                    builder: (ctx) => InkWell(
-                      onTap: () {
-                        Scaffold.of(ctx).openDrawer();
-                      },
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(1000),
-                        child: Container(
-                          width: 40,
-                          height: 40,
-                          color: AppColors.yellow,
-                          child: Image.asset('images/ouahid.png'),
-                        ),
-                      ),
-                    ),
+                leading: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  child: Text(
+                    "Kawser Ahmed",
+                    style: TextStyle(
+                        color: AppColors.primaryColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24),
                   ),
                 ),
                 flexibleSpace: Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage('images/cover.jpg'),
+                      image: AssetImage('assets/images/cover.png'),
                       fit: BoxFit.cover,
                     ),
                   ),
                   child: Container(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       gradient: LinearGradient(
                         begin: Alignment.bottomCenter,
                         end: Alignment.topCenter,
@@ -331,7 +350,7 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 bottom: PreferredSize(
-                  preferredSize: Size.fromHeight(350),
+                  preferredSize: const Size.fromHeight(350),
                   child: Header(),
                 ),
               ),
@@ -347,7 +366,7 @@ class _HomeState extends State<Home> {
   List<Widget> _slivers() => [
         SliverToBoxAdapter(
           key: _aboutGlobaleKey,
-          child: About(),
+          child: const About(),
         ),
         SliverToBoxAdapter(
           key: _statisticsGlobaleKey,
@@ -355,17 +374,17 @@ class _HomeState extends State<Home> {
         ),
         SliverToBoxAdapter(
           key: _workingProcessGlobaleKye,
-          child: WorkingProcess(),
+          child: const WorkingProcess(),
         ),
         SliverToBoxAdapter(
           key: _recentProjectsGlobaleKey,
-          child: MyProjects(),
+          child: const MyProjects(),
         ),
         SliverToBoxAdapter(
           key: _contactUsGlobaleKey,
-          child: ContactUs(),
+          child: const ContactUs(),
         ),
-        SliverToBoxAdapter(
+        const SliverToBoxAdapter(
           child: Footer(),
         ),
       ];
@@ -383,7 +402,11 @@ class _HomeState extends State<Home> {
                 ? _scrollToHeader
                 : null, // make sure user cannot click when button hidden
             mini: true,
-            child: AppIcon('icons/double-up-arrow.png', size: 20),
+            child: const Icon(
+              Icons.keyboard_double_arrow_up_outlined,
+              color: Colors.white,
+              size: 20,
+            ),
           ),
         );
       },

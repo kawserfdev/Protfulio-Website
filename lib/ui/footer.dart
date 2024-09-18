@@ -3,8 +3,8 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'responsive_widget.dart';
 import '../data/projects.dart';
-import '../config/constants.dart';
-import '../config/colors.dart';
+import '../constant/constants.dart';
+import '../constant/colors.dart';
 import 'icon.dart';
 
 class Footer extends StatelessWidget {
@@ -12,6 +12,8 @@ class Footer extends StatelessWidget {
       "You have an idea, I am here to turn your dream into real digital solution.";
   final String _description =
       "I am developer has around 4 years experience developing mobile and web applications, using different languages and techniques.";
+
+  const Footer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -37,10 +39,10 @@ class Footer extends StatelessWidget {
                           Container(
                             width: 2,
                             height: 20,
-                            color: AppColors.yellow,
+                            color: AppColors.primaryColor,
                           ),
                           const SizedBox(width: 7.5),
-                          Text(
+                          const Text(
                             'GET IN TOUCH',
                             style: TextStyle(
                               color: Colors.white,
@@ -119,10 +121,10 @@ class Footer extends StatelessWidget {
                           Container(
                             width: 2,
                             height: 20,
-                            color: AppColors.yellow,
+                            color: AppColors.primaryColor,
                           ),
                           const SizedBox(width: 7.5),
-                          Text(
+                          const Text(
                             'ABOUT ME',
                             style: TextStyle(
                               color: Colors.white,
@@ -153,10 +155,10 @@ class Footer extends StatelessWidget {
                           Container(
                             width: 2,
                             height: 20,
-                            color: AppColors.yellow,
+                            color: AppColors.primaryColor,
                           ),
                           const SizedBox(width: 7.5),
-                          Text(
+                          const Text(
                             'RECENT PROJECTS',
                             style: TextStyle(
                               color: Colors.white,
@@ -216,10 +218,10 @@ class Footer extends StatelessWidget {
                     Container(
                       width: 2,
                       height: 20,
-                      color: AppColors.yellow,
+                      color: AppColors.primaryColor,
                     ),
                     const SizedBox(width: 7.5),
-                    Text(
+                    const Text(
                       'GET IN TOUCH',
                       style: TextStyle(
                         color: Colors.white,
@@ -296,10 +298,10 @@ class Footer extends StatelessWidget {
                     Container(
                       width: 2,
                       height: 20,
-                      color: AppColors.yellow,
+                      color: AppColors.primaryColor,
                     ),
                     const SizedBox(width: 7.5),
-                    Text(
+                    const Text(
                       'ABOUT ME',
                       style: TextStyle(
                         color: Colors.white,
@@ -328,10 +330,10 @@ class Footer extends StatelessWidget {
                     Container(
                       width: 2,
                       height: 20,
-                      color: AppColors.yellow,
+                      color: AppColors.primaryColor,
                     ),
                     const SizedBox(width: 7.5),
-                    Text(
+                    const Text(
                       'RECENT PROJECTS',
                       style: TextStyle(
                         color: Colors.white,
@@ -365,7 +367,7 @@ class Footer extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Text(
-              'Proudly powered by OuahidDev ©${DateTime.now().year}',
+              'Proudly powered by KawserDev ©${DateTime.now().year}',
               style: TextStyle(
                 color: AppColors.greyLight!.withOpacity(.75),
               ),
@@ -379,6 +381,7 @@ class Footer extends StatelessWidget {
 
   Widget _buildProject(BuildContext context, Project project) => InkWell(
         onTap: () {
+          // ignore: deprecated_member_use
           launch(project.url!);
         },
         child: ResponsiveWidget(
@@ -404,28 +407,28 @@ class Footer extends StatelessWidget {
           onTap: () async {
             launch(AppConstants.github);
           },
-          child: AppIcon('icons/github.png'),
+          child: const AppIcon('assets/images/github.png',size: 16),
         ),
-        const SizedBox(width: 20),
+        const SizedBox(width: 24),
         InkWell(
           onTap: () {
             launch(AppConstants.linkedin);
           },
-          child: AppIcon('icons/linkedin.png'),
+          child: const AppIcon('assets/images/linkedin.png',size: 16),
         ),
-        const SizedBox(width: 20),
+        const SizedBox(width: 24),
         InkWell(
           onTap: () {
             launch(AppConstants.twitter);
           },
-          child: AppIcon('icons/twitter.png'),
+          child: const AppIcon('assets/images/twitter.png',size: 16),
         ),
-        const SizedBox(width: 20),
+        const SizedBox(width: 24),
         InkWell(
           onTap: () {
             launch(AppConstants.facebook);
           },
-          child: AppIcon('icons/facebook.png'),
+          child: const AppIcon('assets/images/facebook.png',size: 16),
         ),
       ];
 }

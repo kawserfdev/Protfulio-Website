@@ -7,8 +7,7 @@ class AppIcon extends StatelessWidget {
   final Color? background;
 
   const AppIcon(this.path,
-      {Key? key, this.size = 25, this.color = Colors.white, this.background})
-      : super(key: key);
+      {super.key, this.size = 25, this.color = Colors.white, this.background});
   @override
   Widget build(BuildContext context) {
     return Container(

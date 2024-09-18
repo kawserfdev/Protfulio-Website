@@ -5,12 +5,14 @@ import 'package:mailto/mailto.dart';
 import 'package:profile/ui/icon.dart';
 
 import 'responsive_widget.dart';
-import '../config/constants.dart';
-import '../config/styles.dart';
-import '../config/colors.dart';
+import '../constant/constants.dart';
+import '../constant/styles.dart';
+import '../constant/colors.dart';
 import '../utils/extensions.dart';
 
 class ContactUs extends StatefulWidget {
+  const ContactUs({super.key});
+
   @override
   _ContactUsState createState() => _ContactUsState();
 }
@@ -34,9 +36,9 @@ class _ContactUsState extends State<ContactUs> {
         child: Column(
           children: [
             Text('GET IN TOUCH', style: AppStyles.title),
-            Container(width: 100, height: 2, color: AppColors.yellow),
+            Container(width: 100, height: 2, color: AppColors.primaryColor),
             const SizedBox(height: 3),
-            Container(width: 75, height: 2, color: AppColors.yellow),
+            Container(width: 75, height: 2, color: AppColors.primaryColor),
             const SizedBox(height: 50),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,19 +48,19 @@ class _ContactUsState extends State<ContactUs> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       _buildContactInfo(
-                        'icons/email.png',
+                        'assets/images/email.png',
                         'Mail Us:',
                         AppConstants.mail,
                       ),
                       const SizedBox(height: 20),
                       _buildContactInfo(
-                        'icons/call.png',
+                        'assets/images/phone.png',
                         'Call Us:',
                         AppConstants.phone,
                       ),
                       const SizedBox(height: 20),
                       _buildContactInfo(
-                        'icons/pin.png',
+                        'assets/images/site.png',
                         'Visit Us:',
                         AppConstants.location,
                       ),
@@ -86,9 +88,9 @@ class _ContactUsState extends State<ContactUs> {
               style: AppStyles.title,
               textAlign: TextAlign.center,
             ),
-            Container(width: 75, height: 2, color: AppColors.yellow),
+            Container(width: 75, height: 2, color: AppColors.primaryColor),
             const SizedBox(height: 3),
-            Container(width: 50, height: 2, color: AppColors.yellow),
+            Container(width: 50, height: 2, color: AppColors.primaryColor),
             const SizedBox(height: 50),
             Column(
               children: [
@@ -96,19 +98,19 @@ class _ContactUsState extends State<ContactUs> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _buildContactInfo(
-                      'icons/email.png',
+                      'assets/images/email.png',
                       'Mail Us:',
                       AppConstants.mail,
                     ),
                     const SizedBox(height: 20),
                     _buildContactInfo(
-                      'icons/call.png',
+                      'assets/images/phone.png',
                       'Call Us:',
                       AppConstants.phone,
                     ),
                     const SizedBox(height: 20),
                     _buildContactInfo(
-                      'icons/pin.png',
+                      'assets/images/site.png',
                       'Visit Us:',
                       AppConstants.location,
                     ),
@@ -136,7 +138,7 @@ class _ContactUsState extends State<ContactUs> {
             children: [
               Text(
                 title,
-                style: TextStyle(
+                style: const TextStyle(
                   color: AppColors.black,
                   fontWeight: FontWeight.bold,
                 ),
@@ -157,7 +159,7 @@ class _ContactUsState extends State<ContactUs> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        const Text(
           'Have Something To Write?',
           style: TextStyle(
             color: AppColors.black,
@@ -180,7 +182,7 @@ class _ContactUsState extends State<ContactUs> {
                             ? null
                             : 'Please insert valid name!';
                       },
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: 'Your Name',
                         border: OutlineInputBorder(),
                       ),
@@ -194,7 +196,7 @@ class _ContactUsState extends State<ContactUs> {
                             ? null
                             : 'Please insert valid email!';
                       },
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: 'Your Email',
                         border: OutlineInputBorder(),
                       ),
@@ -211,20 +213,20 @@ class _ContactUsState extends State<ContactUs> {
                       ? null
                       : 'Please insert valid message!, at least 10 characters';
                 },
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Your Message',
                   border: OutlineInputBorder(),
                 ),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
-                style: ButtonStyle(
-                  padding: MaterialStatePropertyAll(const EdgeInsets.symmetric(horizontal: 30, vertical: 20),),
-                  backgroundColor: MaterialStatePropertyAll(AppColors.yellow),
-                  textStyle: MaterialStatePropertyAll(TextStyle(color:Colors.white, )),
+                style: const ButtonStyle(
+                  padding: WidgetStatePropertyAll(EdgeInsets.symmetric(horizontal: 30, vertical: 20),),
+                  backgroundColor: WidgetStatePropertyAll(AppColors.primaryColor),
+                  textStyle: WidgetStatePropertyAll(TextStyle(color:Colors.white, )),
                 ),
                 onPressed: _sendMail,
-                child: Text('Send'),
+                child: const Text('Send'),
               ),
             ],
           ),

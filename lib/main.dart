@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:profile/config/colors.dart';
+import 'package:profile/constant/colors.dart';
 import 'ui/home.dart';
 
 void main() {
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         visualDensity: VisualDensity.adaptivePlatformDensity,
         colorScheme:
-            ColorScheme.fromSwatch().copyWith(secondary: AppColors.yellow),
+            ColorScheme.fromSwatch().copyWith(secondary: AppColors.primaryColor),
       ),
       home: Home(),
     );

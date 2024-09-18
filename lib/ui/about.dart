@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:profile/ui/responsive_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../data/skills.dart';
-import '../config/constants.dart';
-import '../config/styles.dart';
-import '../config/colors.dart';
+import '../constant/constants.dart';
+import '../constant/styles.dart';
+import '../constant/colors.dart';
 
 class About extends StatelessWidget {
-  final String _avatar = 'images/ouahid.png';
+  final String _avatar = 'assets/images/me.jpg';
   final String _description =
-      "I am developer has around 4 years experience developing mobile and web applications, using different languages and techniques.";
+      "I am developer has around 2.5 years experience developing mobile and web applications, using different languages and techniques.";
+
+  const About({super.key});
 
   @override
   Widget build(BuildContext context) => ResponsiveWidget(
@@ -23,16 +25,17 @@ class About extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(1000),
-                    child: Container(
-                      color: AppColors.greyLight,
-                      child: Image.asset(
-                        _avatar,
-                        width: 300,
-                        height: 300,
-                        fit: BoxFit.cover,
-                      ),
+                  Container(
+                    height: 272,
+                     width: 216,
+                     clipBehavior: Clip.hardEdge,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+
+                    ),
+                    child: Image.asset(
+                      _avatar,
+                      fit: BoxFit.cover,
                     ),
                   ),
                   const SizedBox(width: 20),
@@ -40,10 +43,10 @@ class About extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           'ABOUT ME',
                           style: TextStyle(
-                            color: AppColors.yellow,
+                            color: AppColors.primaryColor,
                             fontSize: 40,
                             fontWeight: FontWeight.bold,
                           ),
@@ -61,34 +64,34 @@ class About extends StatelessWidget {
                           children: [
                             ElevatedButton(
                               onPressed: () {},
-                              style: ButtonStyle(
-                                padding: MaterialStatePropertyAll(
-                                  const EdgeInsets.symmetric(
+                              style: const ButtonStyle(
+                                padding: WidgetStatePropertyAll(
+                                  EdgeInsets.symmetric(
                                       horizontal: 30, vertical: 20),
                                 ),
                                 backgroundColor:
-                                    MaterialStatePropertyAll(AppColors.yellow),
-                                textStyle: MaterialStatePropertyAll(TextStyle(
+                                    WidgetStatePropertyAll(AppColors.primaryColor),
+                                textStyle: WidgetStatePropertyAll(TextStyle(
                                   color: Colors.white,
                                 )),
                               ),
-                              child: Text('HIRE ME NOW'),
+                              child:  Text('HIRE ME NOW',style: TextStyle(color: AppColors.greyLight),),
                             ),
                             const SizedBox(width: 20),
                             ElevatedButton(
                               onPressed: _downloadCV,
-                              style: ButtonStyle(
-                                padding: MaterialStatePropertyAll(
-                                  const EdgeInsets.symmetric(
+                              style: const ButtonStyle(
+                                padding: WidgetStatePropertyAll(
+                                  EdgeInsets.symmetric(
                                       horizontal: 30, vertical: 20),
                                 ),
                                 backgroundColor:
-                                    MaterialStatePropertyAll(AppColors.black),
-                                textStyle: MaterialStatePropertyAll(TextStyle(
+                                    WidgetStatePropertyAll(AppColors.black),
+                                textStyle: WidgetStatePropertyAll(TextStyle(
                                   color: Colors.white,
                                 )),
                               ),
-                              child: Text('VIEW RESUME'),
+                              child:  Text('VIEW RESUME',style: TextStyle(color: AppColors.greyLight),),
                             ),
                           ],
                         ),
@@ -99,9 +102,9 @@ class About extends StatelessWidget {
               ),
               const SizedBox(height: 100),
               Text('MY SKILLS', style: AppStyles.title),
-              Container(width: 100, height: 2, color: AppColors.yellow),
+              Container(width: 100, height: 2, color: AppColors.primaryColor),
               const SizedBox(height: 3),
-              Container(width: 75, height: 2, color: AppColors.yellow),
+              Container(width: 75, height: 2, color: AppColors.primaryColor),
               const SizedBox(height: 50),
               Wrap(
                 spacing: 25,
@@ -133,10 +136,10 @@ class About extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              Text(
+              const Text(
                 'ABOUT ME',
                 style: TextStyle(
-                  color: AppColors.yellow,
+                  color: AppColors.primaryColor,
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
@@ -152,35 +155,35 @@ class About extends StatelessWidget {
               const SizedBox(height: 30),
               ElevatedButton(
                 onPressed: () {},
-                style: ButtonStyle(
-                    padding: MaterialStatePropertyAll(
-                      const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                style: const ButtonStyle(
+                    padding: WidgetStatePropertyAll(
+                      EdgeInsets.symmetric(horizontal: 30, vertical: 20),
                     ),
-                    backgroundColor: MaterialStatePropertyAll(AppColors.yellow),
-                    textStyle: MaterialStatePropertyAll(TextStyle(
+                    backgroundColor: WidgetStatePropertyAll(AppColors.primaryColor),
+                    textStyle: WidgetStatePropertyAll(TextStyle(
                       color: Colors.white,
                     ))),
-                child: Text('HIRE ME NOW'),
+                child: const Text('HIRE ME NOW'),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: _downloadCV,
-                style: ButtonStyle(
-                  padding: MaterialStatePropertyAll(
-                    const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                style: const ButtonStyle(
+                  padding: WidgetStatePropertyAll(
+                    EdgeInsets.symmetric(horizontal: 30, vertical: 20),
                   ),
-                  backgroundColor: MaterialStatePropertyAll(AppColors.black),
-                  textStyle: MaterialStatePropertyAll(TextStyle(
+                  backgroundColor: WidgetStatePropertyAll(AppColors.black),
+                  textStyle: WidgetStatePropertyAll(TextStyle(
                     color: Colors.white,
                   )),
                 ),
-                child: Text('VIEW RESUME'),
+                child: const Text('VIEW RESUME'),
               ),
               const SizedBox(height: 50),
               Text('MY SKILLS', style: AppStyles.title),
-              Container(width: 75, height: 2, color: AppColors.yellow),
+              Container(width: 75, height: 2, color: AppColors.primaryColor),
               const SizedBox(height: 3),
-              Container(width: 50, height: 2, color: AppColors.yellow),
+              Container(width: 50, height: 2, color: AppColors.primaryColor),
               const SizedBox(height: 25),
               Wrap(
                 spacing: 10,

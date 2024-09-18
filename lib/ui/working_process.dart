@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:profile/ui/responsive_widget.dart';
-import '../config/styles.dart';
-import '../config/colors.dart';
+import '../constant/styles.dart';
+import '../constant/colors.dart';
 import 'icon.dart';
 
 class WorkingProcess extends StatelessWidget {
@@ -19,9 +19,9 @@ class WorkingProcess extends StatelessWidget {
         child: Column(
           children: [
             Text('WORKING PROCESS', style: AppStyles.title),
-            Container(width: 100, height: 2, color: AppColors.yellow),
+            Container(width: 100, height: 2, color: AppColors.primaryColor),
             const SizedBox(height: 3),
-            Container(width: 75, height: 2, color: AppColors.yellow),
+            Container(width: 75, height: 2, color: AppColors.primaryColor),
             const SizedBox(height: 50),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -30,7 +30,7 @@ class WorkingProcess extends StatelessWidget {
                   child: __buildProcess(
                       context,
                       '01.',
-                      'icons/pencil.png',
+                      'assets/images/panning.jpg',
                       'Plan',
                       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor laboris nisi ut aliquip ex ea commodo.'),
                 ),
@@ -39,7 +39,7 @@ class WorkingProcess extends StatelessWidget {
                   child: __buildProcess(
                       context,
                       '02.',
-                      'icons/design.png',
+                      'assets/images/UX-App-design.jpg',
                       'Design',
                       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor laboris nisi ut aliquip ex ea commodo.'),
                 ),
@@ -48,7 +48,7 @@ class WorkingProcess extends StatelessWidget {
                   child: __buildProcess(
                       context,
                       '03.',
-                      'icons/coding.png',
+                      'assets/images/cooding.jpg',
                       'Code',
                       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor laboris nisi ut aliquip ex ea commodo.'),
                 )
@@ -70,17 +70,17 @@ class WorkingProcess extends StatelessWidget {
               style: AppStyles.title,
               textAlign: TextAlign.center,
             ),
-            Container(width: 75, height: 2, color: AppColors.yellow),
+            Container(width: 75, height: 2, color: AppColors.primaryColor),
             const SizedBox(height: 3),
-            Container(width: 50, height: 2, color: AppColors.yellow),
+            Container(width: 50, height: 2, color: AppColors.primaryColor),
             const SizedBox(height: 50),
-            __buildProcess(context, '01.', 'icons/pencil.png', 'Plan',
+            __buildProcess(context, '01.', 'assets/images/panning.jpg', 'Plan',
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor laboris nisi ut aliquip ex ea commodo.'),
             const SizedBox(height: 10),
-            __buildProcess(context, '02.', 'icons/design.png', 'Design',
+            __buildProcess(context, '02.', 'assets/images/UX-App-design.jpg', 'Design',
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor laboris nisi ut aliquip ex ea commodo.'),
             const SizedBox(height: 10),
-            __buildProcess(context, '03.', 'icons/coding.png', 'Code',
+            __buildProcess(context, '03.', 'assets/images/cooding.jpg', 'Code',
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor laboris nisi ut aliquip ex ea commodo.'),
           ],
         ),
@@ -101,7 +101,7 @@ class WorkingProcess extends StatelessWidget {
               alignment: Alignment.topRight,
               child: Text(
                 index,
-                style:  TextStyle(
+                style: const TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.w700,
                 ),
@@ -110,11 +110,11 @@ class WorkingProcess extends StatelessWidget {
             const SizedBox(height: 10),
             Divider(color: AppColors.greyLight),
             const SizedBox(height: 10),
-            AppIcon(iconPath, color: AppColors.black, size: 40),
+            AppIcon(iconPath, size: 40),
             const SizedBox(height: 20),
             Text(
               title,
-              style: TextStyle(
+              style:const TextStyle(
                 color: AppColors.black,
                 fontSize: 25,
                 fontWeight: FontWeight.bold,
@@ -123,7 +123,7 @@ class WorkingProcess extends StatelessWidget {
             const SizedBox(height: 10),
             Text(
               description,
-              style: TextStyle(
+              style:const TextStyle(
                 color: Colors.black45,
               ),
               textAlign: TextAlign.center,

@@ -3,24 +3,26 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'responsive_widget.dart';
 import '../data/projects.dart';
-import '../config/styles.dart';
-import '../config/colors.dart';
+import '../constant/styles.dart';
+import '../constant/colors.dart';
 
 class MyProjects extends StatelessWidget {
+  const MyProjects({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ResponsiveWidget(
       desktopScreen: Container(
         color: AppColors.greyLight,
-        padding: EdgeInsets.symmetric(vertical: 100),
+        padding: const EdgeInsets.symmetric(vertical: 100),
         child: Column(
           children: [
             Text('MY PROJECTS', style: AppStyles.title),
-            Container(width: 100, height: 2, color: AppColors.yellow),
+            Container(width: 100, height: 2, color: AppColors.primaryColor),
             const SizedBox(height: 3),
-            Container(width: 75, height: 2, color: AppColors.yellow),
+            Container(width: 75, height: 2, color: AppColors.primaryColor),
             const SizedBox(height: 50),
-            ...PROJECTS.map((p) => _buildProject(context, p)).toList(),
+            ...PROJECTS.map((p) => _buildProject(context, p)),
           ],
         ),
       ),
@@ -37,14 +39,14 @@ class MyProjects extends StatelessWidget {
               style: AppStyles.title,
               textAlign: TextAlign.center,
             ),
-            Container(width: 75, height: 2, color: AppColors.yellow),
+            Container(width: 75, height: 2, color: AppColors.primaryColor),
             const SizedBox(height: 3),
-            Container(width: 50, height: 2, color: AppColors.yellow),
+            Container(width: 50, height: 2, color: AppColors.primaryColor),
             const SizedBox(height: 50),
             Wrap(
-              children: PROJECTS.map((p) => _buildProject(context, p)).toList(),
               spacing: 5,
               runSpacing: 5,
+              children: PROJECTS.map((p) => _buildProject(context, p)).toList(),
             ),
           ],
         ),
@@ -92,28 +94,29 @@ class MyProjects extends StatelessWidget {
                         ),
                         OutlinedButton(
                           onPressed: () {
+                            // ignore: deprecated_member_use
                             launch(project.url!);
                           },
                           style: ButtonStyle(
-                              padding: MaterialStatePropertyAll(
-                                const EdgeInsets.symmetric(
+                              padding: const WidgetStatePropertyAll(
+                                EdgeInsets.symmetric(
                                     horizontal: 50, vertical: 20),
                               ),
                               backgroundColor:
-                                  MaterialStatePropertyAll(AppColors.yellow),
-                              textStyle: MaterialStatePropertyAll(TextStyle(
-                                color: Colors.yellow,
+                                  const WidgetStatePropertyAll(AppColors.primaryColor),
+                              textStyle: const WidgetStatePropertyAll(TextStyle(
+                                color: AppColors.primaryColor,
                               )),
-                              shape: MaterialStatePropertyAll(
+                              shape: WidgetStatePropertyAll(
                                 RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20),
                                   side: BorderSide(
-                                    color: AppColors.yellow!.withOpacity(.5),
+                                    color: AppColors.primaryColor.withOpacity(.5),
                                     width: 5,
                                   ),
                                 ),
                               )),
-                          child: Text('Visit'),
+                          child: const Text('Visit'),
                         )
                       ],
                     ),
@@ -162,26 +165,27 @@ class MyProjects extends StatelessWidget {
               ),
               OutlinedButton(
                 onPressed: () {
+                  // ignore: deprecated_member_use
                   launch(project.url!);
                 },
                 style: ButtonStyle(
-                    padding: MaterialStatePropertyAll(
-                      const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                    padding: const WidgetStatePropertyAll(
+                      EdgeInsets.symmetric(horizontal: 50, vertical: 20),
                     ),
-                    backgroundColor: MaterialStatePropertyAll(AppColors.yellow),
-                    textStyle: MaterialStatePropertyAll(TextStyle(
-                      color: Colors.yellow,
+                    backgroundColor: const WidgetStatePropertyAll(AppColors.primaryColor),
+                    textStyle: const WidgetStatePropertyAll(TextStyle(
+                      color: AppColors.primaryColor,
                     )),
-                    shape: MaterialStatePropertyAll(
+                    shape: WidgetStatePropertyAll(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                         side: BorderSide(
-                          color: AppColors.yellow!.withOpacity(.5),
+                          color: AppColors.primaryColor.withOpacity(.5),
                           width: 5,
                         ),
                       ),
                     )),
-                child: Text('Visit'),
+                child: const Text('Visit'),
               ),
               Divider(
                 color: AppColors.black.withOpacity(.1),

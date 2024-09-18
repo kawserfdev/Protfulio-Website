@@ -2,28 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:profile/ui/responsive_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../config/constants.dart';
-import '../config/colors.dart';
+import '../constant/constants.dart';
+import '../constant/colors.dart';
 
 class Header extends StatelessWidget {
-  final String _name = "Abdelouahed";
-  final String _job = "Mobile Developer";
+  final String _name = "Kawser Ahmed";
+  final String _job = "Mobile App Developer";
   final String _description =
-      "I am developer has around 4 years experience developing mobile and web applications, using different languages and techniques.";
+      "I am developer has around 2.5 years experience developing mobile and web applications, using different languages and techniques.";
 
   @override
   Widget build(BuildContext context) => ResponsiveWidget(
         desktopScreen: Container(
+          clipBehavior: Clip.none,
           width: double.infinity,
           padding: EdgeInsets.symmetric(
             horizontal: MediaQuery.of(context).size.width * .15,
           ),
+         
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 'I’m $_name',
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 40,
                   fontWeight: FontWeight.w900,
@@ -31,8 +33,8 @@ class Header extends StatelessWidget {
               ),
               Text(
                 _job,
-                style: TextStyle(
-                  color: AppColors.yellow,
+                style: const TextStyle(
+                  color: Colors.blue,
                   fontSize: 40,
                   fontWeight: FontWeight.w900,
                 ),
@@ -42,7 +44,7 @@ class Header extends StatelessWidget {
                 width: MediaQuery.of(context).size.width / 2,
                 child: Text(
                   _description,
-                  style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         color: Colors.grey[100],
                         fontSize: 17,
                       ),
@@ -50,13 +52,18 @@ class Header extends StatelessWidget {
               ),
               const SizedBox(height: 30),
               ElevatedButton(
-                style: ButtonStyle(
-                  padding: MaterialStatePropertyAll(const EdgeInsets.symmetric(horizontal: 30, vertical: 20),),
-                  backgroundColor: MaterialStatePropertyAll(AppColors.yellow),
-                  textStyle: MaterialStatePropertyAll(TextStyle(color:Colors.white, )),
+                style: const ButtonStyle(
+                  padding: WidgetStatePropertyAll(
+                    EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                  ),
+                  backgroundColor:
+                      WidgetStatePropertyAll(AppColors.primaryColor),
+                  textStyle: WidgetStatePropertyAll(TextStyle(
+                    color: Colors.white,
+                  )),
                 ),
                 onPressed: _downloadCV,
-                child: Text('Download CV'),
+                child:  Text('Download CV',style: TextStyle(color: AppColors.greyLight),),
               ),
               const SizedBox(height: 100),
             ],
@@ -72,7 +79,7 @@ class Header extends StatelessWidget {
               children: [
                 Text(
                   'I’m $_name',
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 30,
                     fontWeight: FontWeight.w900,
@@ -80,8 +87,8 @@ class Header extends StatelessWidget {
                 ),
                 Text(
                   _job,
-                  style: TextStyle(
-                    color: AppColors.yellow,
+                  style: const TextStyle(
+                    color: AppColors.primaryColor,
                     fontSize: 30,
                     fontWeight: FontWeight.w900,
                   ),
@@ -91,7 +98,7 @@ class Header extends StatelessWidget {
                   width: MediaQuery.of(context).size.width,
                   child: Text(
                     _description,
-                    style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           color: Colors.grey[100],
                           fontSize: 15,
                           height: 1.8,
@@ -101,14 +108,18 @@ class Header extends StatelessWidget {
                 ),
                 const SizedBox(height: 30),
                 ElevatedButton(
-                  style: ButtonStyle(
-                  padding: MaterialStatePropertyAll(const EdgeInsets.symmetric(horizontal: 30, vertical: 20),),
-                  backgroundColor: MaterialStatePropertyAll(AppColors.yellow),
-                  textStyle: MaterialStatePropertyAll(TextStyle(color:Colors.white, )),
-                ),
-                  
+                  style: const ButtonStyle(
+                    padding: WidgetStatePropertyAll(
+                      EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                    ),
+                    backgroundColor:
+                        WidgetStatePropertyAll(AppColors.primaryColor),
+                    textStyle: WidgetStatePropertyAll(TextStyle(
+                      color: Colors.white,
+                    )),
+                  ),
                   onPressed: _downloadCV,
-                  child: Text('Download CV'),
+                  child: const Text('Download CV'),
                 ),
                 const SizedBox(height: 100),
               ],
