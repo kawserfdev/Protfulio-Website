@@ -3,7 +3,7 @@ mixin AppConstants {
 
   static const String phone = '+8801925-286359';
 
-  static const String location = 'Dhaka, Bangladesh';
+  static const String location = '112, 3 Thana Rd, Dhaka 1212, Bangladesh';
 
   static const String github = 'https://github.com/kawserfdev';
 

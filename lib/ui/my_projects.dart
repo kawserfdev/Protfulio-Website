@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -64,8 +65,15 @@ class MyProjects extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: MediaQuery.of(context).size.width * .3,
-                    child: Image.asset(project.image!),
+                    height: MediaQuery.of(context).size.width * .2,
+                    child: CachedNetworkImage(
+                      imageUrl: project.image!,
+                      fit: BoxFit.cover,
+                      placeholder: (context, url) =>
+                          const CircularProgressIndicator(),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
+                    ),
                   ),
                   SizedBox(width: MediaQuery.of(context).size.width * .075),
                   Expanded(
@@ -102,16 +110,17 @@ class MyProjects extends StatelessWidget {
                                 EdgeInsets.symmetric(
                                     horizontal: 50, vertical: 20),
                               ),
-                              backgroundColor:
-                                  const WidgetStatePropertyAll(AppColors.primaryColor),
+                              backgroundColor: const WidgetStatePropertyAll(
+                                  AppColors.primaryColor),
                               textStyle: const WidgetStatePropertyAll(TextStyle(
-                                color: AppColors.primaryColor,
+                                color: Colors.white,
                               )),
                               shape: WidgetStatePropertyAll(
                                 RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20),
                                   side: BorderSide(
-                                    color: AppColors.primaryColor.withOpacity(.5),
+                                    color:
+                                        AppColors.primaryColor.withOpacity(.5),
                                     width: 5,
                                   ),
                                 ),
@@ -136,8 +145,14 @@ class MyProjects extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(
-                height: MediaQuery.of(context).size.width * .75,
-                child: Image.asset(project.image!),
+                height: MediaQuery.of(context).size.width * .50,
+                child: CachedNetworkImage(
+                  imageUrl: project.image!,
+                  fit: BoxFit.cover,
+                  placeholder: (context, url) =>
+                      const CircularProgressIndicator(),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                ),
               ),
               SizedBox(width: MediaQuery.of(context).size.width * .075),
               SizedBox(
@@ -172,9 +187,10 @@ class MyProjects extends StatelessWidget {
                     padding: const WidgetStatePropertyAll(
                       EdgeInsets.symmetric(horizontal: 50, vertical: 20),
                     ),
-                    backgroundColor: const WidgetStatePropertyAll(AppColors.primaryColor),
+                    backgroundColor:
+                        const WidgetStatePropertyAll(AppColors.primaryColor),
                     textStyle: const WidgetStatePropertyAll(TextStyle(
-                      color: AppColors.primaryColor,
+                      color: Colors.white,
                     )),
                     shape: WidgetStatePropertyAll(
                       RoundedRectangleBorder(

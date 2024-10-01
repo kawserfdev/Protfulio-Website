@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -11,7 +12,7 @@ class Footer extends StatelessWidget {
   final String _getInTouch =
       "You have an idea, I am here to turn your dream into real digital solution.";
   final String _description =
-      "I am developer has around 4 years experience developing mobile and web applications, using different languages and techniques.";
+      "I am developer has around 2.5 years experience developing mobile and web applications, using different languages and techniques.";
 
   const Footer({super.key});
 
@@ -191,7 +192,7 @@ class Footer extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Proudly powered by OuahidDev ©${DateTime.now().year}',
+                  'Proudly powered by KawserDev ©${DateTime.now().year}',
                   style: TextStyle(
                     color: AppColors.greyLight!.withOpacity(.75),
                   ),
@@ -390,14 +391,24 @@ class Footer extends StatelessWidget {
             padding: const EdgeInsets.all(15),
             width: MediaQuery.of(context).size.width * .1,
             height: MediaQuery.of(context).size.width * .1,
-            child: Image.asset(project.image!),
+            child: CachedNetworkImage(
+              imageUrl: project.image!,
+              fit: BoxFit.cover,
+              placeholder: (context, url) => const CircularProgressIndicator(),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
+            ),
           ),
           mobileScreen: Container(
             color: AppColors.greyLight,
             padding: const EdgeInsets.all(15),
             width: MediaQuery.of(context).size.width * .2,
             height: MediaQuery.of(context).size.width * .2,
-            child: Image.asset(project.image!),
+            child: CachedNetworkImage(
+              imageUrl: project.image!,
+              fit: BoxFit.cover,
+              placeholder: (context, url) => const CircularProgressIndicator(),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
+            ),
           ),
         ),
       );
@@ -405,30 +416,31 @@ class Footer extends StatelessWidget {
   List<Widget> _socialMedia() => [
         InkWell(
           onTap: () async {
+            // ignore: deprecated_member_use
             launch(AppConstants.github);
           },
-          child: const AppIcon('assets/images/github.png',size: 16),
+          child: const AppIcon('assets/images/github.png', size: 16),
         ),
         const SizedBox(width: 24),
         InkWell(
           onTap: () {
             launch(AppConstants.linkedin);
           },
-          child: const AppIcon('assets/images/linkedin.png',size: 16),
+          child: const AppIcon('assets/images/linkedin.png', size: 16),
         ),
         const SizedBox(width: 24),
         InkWell(
           onTap: () {
             launch(AppConstants.twitter);
           },
-          child: const AppIcon('assets/images/twitter.png',size: 16),
+          child: const AppIcon('assets/images/twitter.png', size: 16),
         ),
         const SizedBox(width: 24),
         InkWell(
           onTap: () {
             launch(AppConstants.facebook);
           },
-          child: const AppIcon('assets/images/facebook.png',size: 16),
+          child: const AppIcon('assets/images/facebook.png', size: 16),
         ),
       ];
 }

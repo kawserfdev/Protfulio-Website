@@ -131,7 +131,7 @@ class _ContactUsState extends State<ContactUs> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AppIcon(imagePath, color: AppColors.black.withOpacity(.7), size: 20),
+          AppIcon(imagePath, color: AppColors.primaryColor, size: 20),
           const SizedBox(width: 10),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,

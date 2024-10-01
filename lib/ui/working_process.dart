@@ -77,7 +77,11 @@ class WorkingProcess extends StatelessWidget {
             __buildProcess(context, '01.', 'assets/images/panning.jpg', 'Plan',
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor laboris nisi ut aliquip ex ea commodo.'),
             const SizedBox(height: 10),
-            __buildProcess(context, '02.', 'assets/images/UX-App-design.jpg', 'Design',
+            __buildProcess(
+                context,
+                '02.',
+                'assets/images/UX-App-design.jpg',
+                'Design',
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor laboris nisi ut aliquip ex ea commodo.'),
             const SizedBox(height: 10),
             __buildProcess(context, '03.', 'assets/images/cooding.jpg', 'Code',
@@ -110,11 +114,15 @@ class WorkingProcess extends StatelessWidget {
             const SizedBox(height: 10),
             Divider(color: AppColors.greyLight),
             const SizedBox(height: 10),
-            AppIcon(iconPath, size: 40),
+            AppIcon(
+              iconPath,
+              size: 220,
+              background: Colors.white,
+            ),
             const SizedBox(height: 20),
             Text(
               title,
-              style:const TextStyle(
+              style: const TextStyle(
                 color: AppColors.black,
                 fontSize: 25,
                 fontWeight: FontWeight.bold,
@@ -123,7 +131,7 @@ class WorkingProcess extends StatelessWidget {
             const SizedBox(height: 10),
             Text(
               description,
-              style:const TextStyle(
+              style: const TextStyle(
                 color: Colors.black45,
               ),
               textAlign: TextAlign.center,
