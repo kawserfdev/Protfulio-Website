@@ -221,12 +221,20 @@ class _ContactUsState extends State<ContactUs> {
               const SizedBox(height: 20),
               ElevatedButton(
                 style: const ButtonStyle(
-                  padding: WidgetStatePropertyAll(EdgeInsets.symmetric(horizontal: 30, vertical: 20),),
-                  backgroundColor: WidgetStatePropertyAll(AppColors.primaryColor),
-                  textStyle: WidgetStatePropertyAll(TextStyle(color:Colors.white, )),
+                  padding: WidgetStatePropertyAll(
+                    EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                  ),
+                  backgroundColor:
+                      WidgetStatePropertyAll(AppColors.primaryColor),
+                  textStyle: WidgetStatePropertyAll(TextStyle(
+                    color: Colors.white,
+                  )),
                 ),
                 onPressed: _sendMail,
-                child: const Text('Send'),
+                child: Text(
+                  'Send',
+                  style: TextStyle(color: AppColors.greyLight),
+                ),
               ),
             ],
           ),

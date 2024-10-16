@@ -7,9 +7,9 @@ import '../constant/colors.dart';
 
 class Header extends StatelessWidget {
   final String _name = "Kawser Ahmed";
-  final String _job = "Mobile App Developer";
-  final String _description =
-      "I am developer has around 2.5 years experience developing mobile and web applications, using different languages and techniques.";
+  final String job;
+  final String description;
+  const Header({super.key,required this.job, required this.description});
 
   @override
   Widget build(BuildContext context) => ResponsiveWidget(
@@ -19,7 +19,6 @@ class Header extends StatelessWidget {
           padding: EdgeInsets.symmetric(
             horizontal: MediaQuery.of(context).size.width * .15,
           ),
-         
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -32,7 +31,7 @@ class Header extends StatelessWidget {
                 ),
               ),
               Text(
-                _job,
+                job,
                 style: const TextStyle(
                   color: Colors.blue,
                   fontSize: 40,
@@ -43,7 +42,7 @@ class Header extends StatelessWidget {
               SizedBox(
                 width: MediaQuery.of(context).size.width / 2,
                 child: Text(
-                  _description,
+                  description,
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         color: Colors.grey[100],
                         fontSize: 17,
@@ -63,7 +62,10 @@ class Header extends StatelessWidget {
                   )),
                 ),
                 onPressed: _downloadCV,
-                child:  Text('Download CV',style: TextStyle(color: AppColors.greyLight),),
+                child: Text(
+                  'Download CV',
+                  style: TextStyle(color: AppColors.greyLight),
+                ),
               ),
               const SizedBox(height: 100),
             ],
@@ -77,6 +79,7 @@ class Header extends StatelessWidget {
           child: FittedBox(
             child: Column(
               children: [
+               
                 Text(
                   'I’m $_name',
                   style: const TextStyle(
@@ -86,9 +89,9 @@ class Header extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  _job,
+                  job,
                   style: const TextStyle(
-                    color: AppColors.primaryColor,
+                    color: Colors.blue,
                     fontSize: 30,
                     fontWeight: FontWeight.w900,
                   ),
@@ -97,7 +100,7 @@ class Header extends StatelessWidget {
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
                   child: Text(
-                    _description,
+                    description,
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           color: Colors.grey[100],
                           fontSize: 15,
@@ -114,12 +117,14 @@ class Header extends StatelessWidget {
                     ),
                     backgroundColor:
                         WidgetStatePropertyAll(AppColors.primaryColor),
-                    textStyle: WidgetStatePropertyAll(TextStyle(
-                      color: Colors.white,
-                    )),
                   ),
                   onPressed: _downloadCV,
-                  child: const Text('Download CV'),
+                  child: const Text(
+                    'Download CV',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
                 const SizedBox(height: 100),
               ],

@@ -163,7 +163,7 @@ class About extends StatelessWidget {
                     textStyle: WidgetStatePropertyAll(TextStyle(
                       color: Colors.white,
                     ))),
-                child: const Text('HIRE ME NOW'),
+                child:  Text('HIRE ME NOW',style: TextStyle(color: AppColors.greyLight),),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
@@ -177,7 +177,7 @@ class About extends StatelessWidget {
                     color: Colors.white,
                   )),
                 ),
-                child: const Text('VIEW RESUME'),
+                child:  Text('VIEW RESUME',style: TextStyle(color: AppColors.greyLight),),
               ),
               const SizedBox(height: 50),
               Text('MY SKILLS', style: AppStyles.title),

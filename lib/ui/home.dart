@@ -3,6 +3,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:profile/data/profile_provider.dart';
 import 'package:profile/ui/responsive_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -17,14 +19,14 @@ import 'working_process.dart';
 import '../constant/colors.dart';
 import '../constant/constants.dart';
 
-class Home extends StatefulWidget {
-  Home({Key? key}) : super(key: key);
+class Home extends ConsumerStatefulWidget {
+  const Home({super.key});
 
   @override
-  _HomeState createState() => _HomeState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends ConsumerState<Home> {
   final _headerGlobalKey = GlobalKey();
   final _aboutGlobaleKey = GlobalKey();
   final _statisticsGlobaleKey = GlobalKey();
@@ -46,7 +48,9 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveWidget(
+    final profileRef = ref.watch(profileProvider);
+    return profileRef.when(data: (profile) {
+      return ResponsiveWidget(
       desktopScreen: Scaffold(
         body: Container(
           decoration: const BoxDecoration(
@@ -97,7 +101,9 @@ class _HomeState extends State<Home> {
                     )),
                 bottom: PreferredSize(
                   preferredSize: const Size.fromHeight(500),
-                  child: Header(),
+                  child: Header(
+                    job:profile.subject , description: profile.aboutMeShortTitle,
+                  ),
                 ),
                 actions: [
                   Row(
@@ -319,7 +325,7 @@ class _HomeState extends State<Home> {
                 centerTitle: true,
                 backgroundColor: Colors.transparent,
                 leading: const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  padding: EdgeInsets.symmetric(horizontal: 32, vertical: 8),
                   child: Text(
                     "Kawser Ahmed",
                     style: TextStyle(
@@ -351,7 +357,7 @@ class _HomeState extends State<Home> {
                 ),
                 bottom: PreferredSize(
                   preferredSize: const Size.fromHeight(350),
-                  child: Header(),
+                  child: Header( job:profile.subject , description: profile.aboutMeShortTitle,),
                 ),
               ),
               ..._slivers(),
@@ -361,6 +367,7 @@ class _HomeState extends State<Home> {
         floatingActionButton: _buildFab(),
       ),
     );
+    }, error: (error, stackTrace) => Center(child: Text(error.toString()),), loading: () =>const Center(child: CircularProgressIndicator(),),);
   }
 
   List<Widget> _slivers() => [
@@ -370,7 +377,7 @@ class _HomeState extends State<Home> {
         ),
         SliverToBoxAdapter(
           key: _statisticsGlobaleKey,
-          child: Statistics(),
+          child: const Statistics(),
         ),
         SliverToBoxAdapter(
           key: _workingProcessGlobaleKye,
@@ -398,9 +405,7 @@ class _HomeState extends State<Home> {
           opacity: showFab ? 1 : 0,
           duration: const Duration(milliseconds: 500),
           child: FloatingActionButton(
-            onPressed: showFab
-                ? _scrollToHeader
-                : null, // make sure user cannot click when button hidden
+            onPressed: showFab ? _scrollToHeader : null,
             mini: true,
             child: const Icon(
               Icons.keyboard_double_arrow_up_outlined,

@@ -125,7 +125,10 @@ class MyProjects extends StatelessWidget {
                                   ),
                                 ),
                               )),
-                          child: const Text('Visit'),
+                          child: Text(
+                            'Visit',
+                            style: TextStyle(color: AppColors.greyLight),
+                          ),
                         )
                       ],
                     ),
@@ -201,7 +204,10 @@ class MyProjects extends StatelessWidget {
                         ),
                       ),
                     )),
-                child: const Text('Visit'),
+                child: Text(
+                  'Visit',
+                  style: TextStyle(color: AppColors.greyLight),
+                ),
               ),
               Divider(
                 color: AppColors.black.withOpacity(.1),
