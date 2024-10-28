@@ -7,7 +7,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:profile/data/profile_provider.dart';
 import 'package:profile/ui/responsive_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import 'about.dart';
 import 'contact_us.dart';
 import 'footer.dart';
@@ -48,147 +47,159 @@ class _HomeState extends ConsumerState<Home> {
 
   @override
   Widget build(BuildContext context) {
-    final profileRef = ref.watch(profileProvider);
-    return profileRef.when(data: (profile) {
-      return ResponsiveWidget(
-      desktopScreen: Scaffold(
-        body: Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/images/cover.jpg'),
-              fit: BoxFit.cover,
-            ),
-          ),
-          child: CustomScrollView(
-            controller: _scrollController,
-            slivers: [
-              SliverAppBar(
-                key: _headerGlobalKey,
-                titleSpacing: 0,
-                toolbarHeight: 100,
-                backgroundColor: Colors.transparent,
-                flexibleSpace: Container(
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/background.jpg'),
-                      fit: BoxFit.cover,
+    final profileRef = ref.watch(profileFetchProvider);
+    return ResponsiveWidget(
+      desktopScreen: profileRef.when(
+        data: (profile) {
+          return Scaffold(
+            body: Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/images/cover.jpg'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              child: CustomScrollView(
+                controller: _scrollController,
+                slivers: [
+                  SliverAppBar(
+                    key: _headerGlobalKey,
+                    titleSpacing: 0,
+                    toolbarHeight: 100,
+                    backgroundColor: Colors.transparent,
+                    flexibleSpace: Container(
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/images/background.jpg'),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.bottomCenter,
+                            end: Alignment.topCenter,
+                            colors: [
+                              Colors.black,
+                              Colors.black87,
+                              Colors.transparent
+                            ],
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.bottomCenter,
-                        end: Alignment.topCenter,
-                        colors: [
-                          Colors.black,
-                          Colors.black87,
-                          Colors.transparent
+                    title: Padding(
+                        padding: EdgeInsets.only(
+                          left: MediaQuery.of(context).size.width * .15,
+                        ),
+                        child: const Text(
+                          "Kawser Ahmed",
+                          style: TextStyle(
+                              color: AppColors.primaryColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 24),
+                        )),
+                    bottom: PreferredSize(
+                      preferredSize: const Size.fromHeight(500),
+                      child: Header(
+                        job: profile.subject,
+                        description: profile.aboutMeShortTitle,
+                      ),
+                    ),
+                    actions: [
+                      Row(
+                        children: [
+                          MaterialButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8)),
+                            color: AppColors.greyLight,
+                            onPressed: _scrollToAbout,
+                            highlightColor: Colors.white60,
+                            child: const Text(
+                              'About Me',
+                              style: TextStyle(
+                                  color: AppColors.primaryColor,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          const SizedBox(width: 16),
+                          MaterialButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8)),
+                            color: AppColors.greyLight,
+                            onPressed: _scrollToStatistics,
+                            child: const Text(
+                              'Experience',
+                              style: TextStyle(
+                                  color: AppColors.primaryColor,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          const SizedBox(width: 16),
+                          MaterialButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8)),
+                            color: AppColors.greyLight,
+                            onPressed: _scrollToWorkingProcess,
+                            child: const Text(
+                              'Process',
+                              style: TextStyle(
+                                  color: AppColors.primaryColor,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          const SizedBox(width: 16),
+                          MaterialButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8)),
+                            color: AppColors.greyLight,
+                            onPressed: _scrollToRecentProjects,
+                            child: const Text(
+                              'Portfolio',
+                              style: TextStyle(
+                                  color: AppColors.primaryColor,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          const SizedBox(width: 20),
+                          ElevatedButton(
+                            onPressed: _scrollToContactUs,
+                            style: const ButtonStyle(
+                              padding: WidgetStatePropertyAll(
+                                EdgeInsets.symmetric(
+                                    horizontal: 40, vertical: 15),
+                              ),
+                              backgroundColor: WidgetStatePropertyAll(
+                                  AppColors.primaryColor),
+                              textStyle: WidgetStatePropertyAll(TextStyle(
+                                color: Colors.white,
+                              )),
+                            ),
+                            child: const Text(
+                              'Contact Me',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
                         ],
                       ),
-                    ),
-                  ),
-                ),
-                title: Padding(
-                    padding: EdgeInsets.only(
-                      left: MediaQuery.of(context).size.width * .15,
-                    ),
-                    child: const Text(
-                      "Kawser Ahmed",
-                      style: TextStyle(
-                          color: AppColors.primaryColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 24),
-                    )),
-                bottom: PreferredSize(
-                  preferredSize: const Size.fromHeight(500),
-                  child: Header(
-                    job:profile.subject , description: profile.aboutMeShortTitle,
-                  ),
-                ),
-                actions: [
-                  Row(
-                    children: [
-                      MaterialButton(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8)),
-                        color: AppColors.greyLight,
-                        onPressed: _scrollToAbout,
-                        highlightColor: Colors.white60,
-                        child: const Text(
-                          'About Me',
-                          style: TextStyle(
-                              color: AppColors.primaryColor,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      const SizedBox(width: 16),
-                      MaterialButton(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8)),
-                        color: AppColors.greyLight,
-                        onPressed: _scrollToStatistics,
-                        child: const Text(
-                          'Experience',
-                          style: TextStyle(
-                              color: AppColors.primaryColor,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      const SizedBox(width: 16),
-                      MaterialButton(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8)),
-                        color: AppColors.greyLight,
-                        onPressed: _scrollToWorkingProcess,
-                        child: const Text(
-                          'Process',
-                          style: TextStyle(
-                              color: AppColors.primaryColor,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      const SizedBox(width: 16),
-                      MaterialButton(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8)),
-                        color: AppColors.greyLight,
-                        onPressed: _scrollToRecentProjects,
-                        child: const Text(
-                          'Portfolio',
-                          style: TextStyle(
-                              color: AppColors.primaryColor,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      const SizedBox(width: 20),
-                      ElevatedButton(
-                        onPressed: _scrollToContactUs,
-                        style: const ButtonStyle(
-                          padding: WidgetStatePropertyAll(
-                            EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                          ),
-                          backgroundColor:
-                              WidgetStatePropertyAll(AppColors.primaryColor),
-                          textStyle: WidgetStatePropertyAll(TextStyle(
-                            color: Colors.white,
-                          )),
-                        ),
-                        child: const Text(
-                          'Contact Me',
-                          style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.bold),
-                        ),
-                      ),
+                      SizedBox(width: MediaQuery.of(context).size.width * .15),
                     ],
                   ),
-                  SizedBox(width: MediaQuery.of(context).size.width * .15),
+                  ..._slivers(),
                 ],
               ),
-              ..._slivers(),
-            ],
-          ),
+            ),
+            floatingActionButton: _buildFab(),
+          );
+        },
+        error: (error, stackTrace) => Center(
+          child: Text(error.toString()),
         ),
-        floatingActionButton: _buildFab(),
+        loading: () => const Center(
+          child: CircularProgressIndicator(),
+        ),
       ),
       mobileScreen: Scaffold(
         drawer: Drawer(
@@ -357,7 +368,10 @@ class _HomeState extends ConsumerState<Home> {
                 ),
                 bottom: PreferredSize(
                   preferredSize: const Size.fromHeight(350),
-                  child: Header( job:profile.subject , description: profile.aboutMeShortTitle,),
+                  child: Header(
+                    job: "", //profile.subject,
+                    description: "", //profile.aboutMeShortTitle,
+                  ),
                 ),
               ),
               ..._slivers(),
@@ -367,7 +381,6 @@ class _HomeState extends ConsumerState<Home> {
         floatingActionButton: _buildFab(),
       ),
     );
-    }, error: (error, stackTrace) => Center(child: Text(error.toString()),), loading: () =>const Center(child: CircularProgressIndicator(),),);
   }
 
   List<Widget> _slivers() => [

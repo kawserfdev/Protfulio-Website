@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:profile/data/profile_model.dart';
+import 'package:profile/data/profile_provider.dart';
 import 'package:profile/ui/responsive_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../data/skills.dart';
@@ -27,11 +29,10 @@ class About extends StatelessWidget {
                 children: [
                   Container(
                     height: 272,
-                     width: 216,
-                     clipBehavior: Clip.hardEdge,
+                    width: 216,
+                    clipBehavior: Clip.hardEdge,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
-
                     ),
                     child: Image.asset(
                       _avatar,
@@ -69,13 +70,16 @@ class About extends StatelessWidget {
                                   EdgeInsets.symmetric(
                                       horizontal: 30, vertical: 20),
                                 ),
-                                backgroundColor:
-                                    WidgetStatePropertyAll(AppColors.primaryColor),
+                                backgroundColor: WidgetStatePropertyAll(
+                                    AppColors.primaryColor),
                                 textStyle: WidgetStatePropertyAll(TextStyle(
                                   color: Colors.white,
                                 )),
                               ),
-                              child:  Text('HIRE ME NOW',style: TextStyle(color: AppColors.greyLight),),
+                              child: Text(
+                                'HIRE ME NOW',
+                                style: TextStyle(color: AppColors.greyLight),
+                              ),
                             ),
                             const SizedBox(width: 20),
                             ElevatedButton(
@@ -91,7 +95,10 @@ class About extends StatelessWidget {
                                   color: Colors.white,
                                 )),
                               ),
-                              child:  Text('VIEW RESUME',style: TextStyle(color: AppColors.greyLight),),
+                              child: Text(
+                                'VIEW RESUME',
+                                style: TextStyle(color: AppColors.greyLight),
+                              ),
                             ),
                           ],
                         ),
@@ -159,11 +166,15 @@ class About extends StatelessWidget {
                     padding: WidgetStatePropertyAll(
                       EdgeInsets.symmetric(horizontal: 30, vertical: 20),
                     ),
-                    backgroundColor: WidgetStatePropertyAll(AppColors.primaryColor),
+                    backgroundColor:
+                        WidgetStatePropertyAll(AppColors.primaryColor),
                     textStyle: WidgetStatePropertyAll(TextStyle(
                       color: Colors.white,
                     ))),
-                child:  Text('HIRE ME NOW',style: TextStyle(color: AppColors.greyLight),),
+                child: Text(
+                  'HIRE ME NOW',
+                  style: TextStyle(color: AppColors.greyLight),
+                ),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
@@ -177,7 +188,10 @@ class About extends StatelessWidget {
                     color: Colors.white,
                   )),
                 ),
-                child:  Text('VIEW RESUME',style: TextStyle(color: AppColors.greyLight),),
+                child: Text(
+                  'VIEW RESUME',
+                  style: TextStyle(color: AppColors.greyLight),
+                ),
               ),
               const SizedBox(height: 50),
               Text('MY SKILLS', style: AppStyles.title),

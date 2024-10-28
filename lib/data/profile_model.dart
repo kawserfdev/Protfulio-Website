@@ -4,26 +4,26 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 
 class Profile {
-  final String subject;
-  final String experienceTitle;
-  final String cvLink;
-  final String aboutMeShortTitle;
-  final String resumeLink;
-  final List<String> skills;
-  final double experienceTimeline;
-  final int? projectDone;
-  final int? happyClients;
-  final String plan;
-  final String design;
-  final String code;
-  final List<Project>? projectsList;
-  final String phone;
-  final String email;
-  final String address;
-  final String githubLink;
-  final String linkedinLink;
-  final String twitterLink;
-  final String fbLink;
+  final String subject;//
+  final String experienceTitle;//
+  final String cvLink;//
+  final String aboutMeShortTitle;//
+  final String resumeLink;//
+  final List<String> skills;//
+  final double experienceTimeline;//
+  final int? projectDone;//
+  final int? happyClients;//
+  final String plan;//
+  final String design;//
+  final String code;//
+  final List<Project>? projectsList;//
+  final String phone;//
+  final String email;//
+  final String address;//
+  final String githubLink;//
+  final String linkedinLink;//
+  final String twitterLink;//
+  final String fbLink;//
   Profile({
     required this.subject,
     required this.experienceTitle,
@@ -118,30 +118,39 @@ class Profile {
     };
   }
 
-  factory Profile.fromMap(Map<String, dynamic> map) {
-    return Profile(
-      subject: map['subject'] as String,
-      experienceTitle: map['experienceTitle'] as String,
-      cvLink: map['cvLink'] as String,
-      aboutMeShortTitle: map['aboutMeShortTitle'] as String,
-      resumeLink: map['resumeLink'] as String,
-      skills: List<String>.from((map['skills'] as List<String>),),
-      experienceTimeline: map['experienceTimeline'] as double,
-      projectDone: map['projectDone'] != null ? map['projectDone'] as int : null,
-      happyClients: map['happyClients'] != null ? map['happyClients'] as int : null,
-      plan: map['plan'] as String,
-      design: map['design'] as String,
-      code: map['code'] as String,
-      projectsList: map['projectsList'] != null ? List<Project>.from((map['projectsList'] as List<int>).map<Project?>((x) => Project.fromMap(x as Map<String,dynamic>),),) : null,
-      phone: map['phone'] as String,
-      email: map['email'] as String,
-      address: map['address'] as String,
-      githubLink: map['githubLink'] as String,
-      linkedinLink: map['linkedinLink'] as String,
-      twitterLink: map['twitterLink'] as String,
-      fbLink: map['fbLink'] as String,
-    );
-  }
+factory Profile.fromMap(Map<String, dynamic> map) {
+  return Profile(
+    subject: map['subject'] as String,
+    experienceTitle: map['experienceTitle'] as String,
+    cvLink: map['cvLink'] as String,
+    aboutMeShortTitle: map['aboutMeShortTitle'] as String,
+    resumeLink: map['resumeLink'] as String,
+    skills: List<String>.from(map['skills'] ?? []),
+    experienceTimeline: map['experienceTimeline'] is int
+        ? (map['experienceTimeline'] as int).toDouble()
+        : map['experienceTimeline'] as double,
+    projectDone: map['projectDone'] != null ? map['projectDone'] as int : null,
+    happyClients: map['happyClients'] != null ? map['happyClients'] as int : null,
+    plan: map['plan'] as String,
+    design: map['design'] as String,
+    code: map['code'] as String,
+    projectsList: map['projectsList'] != null
+        ? List<Project>.from(
+            (map['projectsList'] as List<dynamic>).map<Project?>(
+              (x) => Project.fromMap(x as Map<String, dynamic>),
+            ),
+          )
+        : null,
+    phone: map['phone'] as String,
+    email: map['email'] as String,
+    address: map['address'] as String,
+    githubLink: map['githubLink'] as String,
+    linkedinLink: map['linkedinLink'] as String,
+    twitterLink: map['twitterLink'] as String,
+    fbLink: map['fbLink'] as String,
+  );
+}
+
 
   String toJson() => json.encode(toMap());
 
@@ -205,11 +214,11 @@ class Profile {
 }
 
 class Project {
-  final String name;
-  final String image;
-  final String description;
-  final List<String> useTechnology;
-  final String projectLink;
+  final String name;//
+  final String image;//
+  final String description;//
+  final List<String> useTechnology;//
+  final String projectLink;//
   Project({
     required this.name,
     required this.image,

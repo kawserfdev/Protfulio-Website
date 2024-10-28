@@ -9,7 +9,7 @@ class Header extends StatelessWidget {
   final String _name = "Kawser Ahmed";
   final String job;
   final String description;
-  const Header({super.key,required this.job, required this.description});
+  const Header({super.key, required this.job, required this.description});
 
   @override
   Widget build(BuildContext context) => ResponsiveWidget(

@@ -5,6 +5,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:profile/constant/colors.dart';
+import 'package:profile/data/profile_model.dart';
+import 'package:profile/data/profile_provider.dart';
 import 'package:profile/firebase_options.dart';
 import 'ui/home.dart';
 
@@ -13,8 +15,10 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  ProviderScope(
-    child: MyApp(),
+  runApp(
+    ProviderScope(
+      child: MyApp(),
+    ),
   );
 }
 
@@ -33,85 +37,76 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// const FancyContainer(
-//         size: Size(300, 300),
-//         cycle: Duration(seconds: 5),
-//         colors: [
-//           Color(0xFF46C4FF),
-//           Color(0xFF269BFA),
-//           Color(0xFF1B7CCC),
-//           Color(0xFF196AAC),
-//           Color(0xFF0752A8)
-//         ],
-//       ),
 
-class FancyContainer extends StatefulWidget {
-  final Size size;
-  final Duration cycle;
-  final List<Color> colors;
 
-  const FancyContainer({
-    required this.size,
-    required this.cycle,
-    required this.colors,
-  });
+class ProfileScreen extends ConsumerWidget {
+  final Profile profile = Profile(
+      subject: "Flutter Developer",
+      experienceTitle:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor laboris nisi ut aliquip ex ea commodo.",
+      cvLink: "www.shpper.net",
+      aboutMeShortTitle: "I am Flutter Developer",
+      resumeLink: "bn",
+      skills: ["jhgfs"],
+      experienceTimeline: 2.5,
+      plan: "",
+      design: "",
+      code: "",
+      phone: "",
+      email: "",
+      address: "",
+      githubLink: "",
+      linkedinLink: "",
+      twitterLink: "",
+      fbLink: "");
 
+ 
   @override
-  State<FancyContainer> createState() => _FancyContainerState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final profileFetch = ref.watch(profileFetchProvider);
 
-class _FancyContainerState extends State<FancyContainer>
-    with SingleTickerProviderStateMixin {
-  late AnimationController controller;
-
-  @override
-  void initState() {
-    super.initState();
-    controller = AnimationController(
-      duration: widget.cycle,
-      vsync: this,
-    )..repeat();
-    Timer(const Duration(seconds: 5), () {
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => Home(),
-          ));
-    });
-  }
-
-  @override
-  void dispose() {
-    controller.dispose();
-
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: controller,
-      builder: (context, _) {
-        final double angle = controller.value * 2 * pi;
-        const double radius = 0.2;
-
-        final double centerX = 0.1 + radius * cos(angle);
-        final double centerY = 0.1 + radius * sin(angle);
-
-        return Container(
-          width: widget.size.width,
-          height: widget.size.height,
-          decoration: BoxDecoration(
-            gradient: RadialGradient(
-              center: Alignment(centerX, centerY),
-              radius: 0.5,
-              colors: widget.colors,
-              tileMode: TileMode.clamp,
+    return Scaffold(
+      appBar: AppBar(title: const Text('Profile')),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () async {
+                try {
+                  await ref.read(profilePostProvider(profile).future);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Profile posted successfully')),
+                  );
+                  ref.refresh(profileFetchProvider); // Refresh to fetch updated data
+                } catch (e) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Failed to post profile: $e')),
+                  );
+                }
+              },
+              child: const Text('Post Profile Data'),
             ),
-          ),
-          child: const Center(child: Text("Flutter Portfolio")),
-        );
-      },
+            const SizedBox(height: 20),
+            profileFetch.when(
+              data: (profile) => _buildProfileContent(profile),
+              loading: () => const CircularProgressIndicator(),
+              error: (error, stackTrace) => Text('Error: $error'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildProfileContent(Profile profile) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text('Subject: ${profile.subject}', style: const TextStyle(fontSize: 18)),
+        Text('Experience: ${profile.experienceTitle}'),
+        Text('About Me: ${profile.aboutMeShortTitle}'),
+      ],
     );
   }
 }
