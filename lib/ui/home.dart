@@ -1,22 +1,20 @@
 // ignore_for_file: deprecated_member_use
 
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:profile/data/profile_provider.dart';
+import 'package:profile/ui/icon.dart';
 import 'package:profile/ui/responsive_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'about.dart';
 import 'contact_us.dart';
 import 'footer.dart';
 import 'header.dart';
-import 'icon.dart';
 import 'my_projects.dart';
 import 'statistics.dart';
 import 'working_process.dart';
 import '../constant/colors.dart';
-import '../constant/constants.dart';
 
 class Home extends ConsumerStatefulWidget {
   const Home({super.key});
@@ -48,10 +46,10 @@ class _HomeState extends ConsumerState<Home> {
   @override
   Widget build(BuildContext context) {
     final profileRef = ref.watch(profileFetchProvider);
-    return ResponsiveWidget(
-      desktopScreen: profileRef.when(
-        data: (profile) {
-          return Scaffold(
+    return profileRef.when(
+      data: (profile) {
+        return ResponsiveWidget(
+          desktopScreen: Scaffold(
             body: Container(
               decoration: const BoxDecoration(
                 image: DecorationImage(
@@ -99,12 +97,9 @@ class _HomeState extends ConsumerState<Home> {
                               fontWeight: FontWeight.bold,
                               fontSize: 24),
                         )),
-                    bottom: PreferredSize(
-                      preferredSize: const Size.fromHeight(500),
-                      child: Header(
-                        job: profile.subject,
-                        description: profile.aboutMeShortTitle,
-                      ),
+                    bottom: const PreferredSize(
+                      preferredSize: Size.fromHeight(500),
+                      child: Header(),
                     ),
                     actions: [
                       Row(
@@ -192,193 +187,210 @@ class _HomeState extends ConsumerState<Home> {
               ),
             ),
             floatingActionButton: _buildFab(),
-          );
-        },
-        error: (error, stackTrace) => Center(
-          child: Text(error.toString()),
-        ),
-        loading: () => const Center(
-          child: CircularProgressIndicator(),
-        ),
-      ),
-      mobileScreen: Scaffold(
-        drawer: Drawer(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Container(
-                  width: 100,
-                  height: 100,
-                  margin: const EdgeInsets.symmetric(vertical: 20),
-                  decoration: BoxDecoration(
-                    color: AppColors.primaryColor,
-                    borderRadius: BorderRadius.circular(1000),
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(1000),
-                    child: Image.asset(
-                      'assets/images/cover.jpg',
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                const Divider(),
-                ListTile(
-                  onTap: _scrollToAbout,
-                  title: const Text(
-                    'About Me',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ),
-                ListTile(
-                  onTap: _scrollToStatistics,
-                  title: const Text(
-                    'Experience',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ),
-                ListTile(
-                  onTap: _scrollToWorkingProcess,
-                  title: const Text(
-                    'Process',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ),
-                ListTile(
-                  onTap: _scrollToRecentProjects,
-                  title: const Text(
-                    'Portfolio',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ),
-                const Divider(),
-                const SizedBox(height: 20),
-                ListTile(
-                  title: ElevatedButton(
-                    onPressed: _scrollToContactUs,
-                    style: const ButtonStyle(
-                      padding: WidgetStatePropertyAll(
-                        EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                      ),
-                      backgroundColor:
-                          WidgetStatePropertyAll(AppColors.primaryColor),
-                    ),
-                    child: const Text(
-                      'Contact Me',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+          ),
+          mobileScreen: Scaffold(
+            drawer: Drawer(
+              child: SingleChildScrollView(
+                child: Column(
                   children: [
-                    InkWell(
-                      onTap: () async {
-                        launch(AppConstants.github);
-                      },
-                      child: const AppIcon(
-                        'assets/images/github.png',
-                        color: AppColors.black,
+                    Container(
+                      width: 100,
+                      height: 100,
+                      margin: const EdgeInsets.symmetric(vertical: 20),
+                      decoration: BoxDecoration(
+                        color: AppColors.primaryColor,
+                        borderRadius: BorderRadius.circular(1000),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(1000),
+                        child: Image.asset(
+                          'assets/images/background.jpg',
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
-                    const SizedBox(width: 20),
-                    InkWell(
+                    const Divider(),
+                    ListTile(
                       onTap: () {
-                        launch(AppConstants.linkedin);
+                        _scrollToAbout();
+                        Navigator.pop(context);
                       },
-                      child: const AppIcon(
-                        'icons/linkedin.png',
-                        color: AppColors.black,
+                      title: const Text(
+                        'About Me',
+                        style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ),
-                    const SizedBox(width: 20),
-                    InkWell(
+                    ListTile(
                       onTap: () {
-                        launch(AppConstants.twitter);
+                        _scrollToStatistics();
+                        Navigator.pop(context);
                       },
-                      child: const AppIcon(
-                        'icons/twitter.png',
-                        color: AppColors.black,
+                      title: const Text(
+                        'Experience',
+                        style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ),
-                    const SizedBox(width: 20),
-                    InkWell(
+                    ListTile(
                       onTap: () {
-                        launch(AppConstants.facebook);
+                        _scrollToWorkingProcess();
+                        Navigator.pop(context);
                       },
-                      child: const AppIcon(
-                        'icons/facebook.png',
-                        color: AppColors.black,
+                      title: const Text(
+                        'Process',
+                        style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ),
+                    ListTile(
+                      onTap: () {
+                        _scrollToRecentProjects();
+                        Navigator.pop(context);
+                      },
+                      title: const Text(
+                        'Portfolio',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    const Divider(),
+                    const SizedBox(height: 20),
+                    ListTile(
+                      title: ElevatedButton(
+                        onPressed: () {
+                          _scrollToContactUs();
+                          Navigator.pop(context);
+                        },
+                        style: const ButtonStyle(
+                          padding: WidgetStatePropertyAll(
+                            EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                          ),
+                          backgroundColor:
+                              WidgetStatePropertyAll(AppColors.primaryColor),
+                        ),
+                        child: const Text(
+                          'Contact Me',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.white),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        InkWell(
+                          onTap: () async {
+                            launch(profile.githubLink);
+                          },
+                          child: const CircleAvatar(
+                            radius: 16,
+                            backgroundColor: Colors.black,
+                            child:
+                                AppIcon('assets/images/github.png', size: 16),
+                          ),
+                        ),
+                        const SizedBox(width: 24),
+                        InkWell(
+                          onTap: () {
+                            launch(profile.linkedinLink);
+                          },
+                          child: const CircleAvatar(
+                            radius: 16,
+                            backgroundColor: Colors.black,
+                            child:
+                                AppIcon('assets/images/linkedin.png', size: 16),
+                          ),
+                        ),
+                        const SizedBox(width: 24),
+                        InkWell(
+                          onTap: () {
+                            launch(profile.twitterLink);
+                          },
+                          child: const CircleAvatar(
+                            radius: 16,
+                            backgroundColor: Colors.black,
+                            child:
+                                AppIcon('assets/images/twitter.png', size: 16),
+                          ),
+                        ),
+                        const SizedBox(width: 24),
+                        InkWell(
+                          onTap: () {
+                            launch(profile.fbLink);
+                          },
+                          child: const CircleAvatar(
+                            radius: 16,
+                            backgroundColor: Colors.black,
+                            child:
+                                AppIcon('assets/images/facebook.png', size: 16),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
                   ],
                 ),
-                const SizedBox(height: 20),
-              ],
+              ),
             ),
-          ),
-        ),
-        body: Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/images/background.jpg'),
-              fit: BoxFit.cover,
-            ),
-          ),
-          child: CustomScrollView(
-            controller: _scrollController,
-            slivers: [
-              SliverAppBar(
-                leadingWidth: double.infinity,
-                key: _headerGlobalKey,
-                titleSpacing: 0,
-                centerTitle: true,
-                backgroundColor: Colors.transparent,
-                leading: const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 32, vertical: 8),
-                  child: Text(
-                    "Kawser Ahmed",
-                    style: TextStyle(
-                        color: AppColors.primaryColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 24),
-                  ),
-                ),
-                flexibleSpace: Container(
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/cover.png'),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.bottomCenter,
-                        end: Alignment.topCenter,
-                        colors: [
-                          Colors.black,
-                          Colors.black87,
-                          Colors.transparent
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                bottom: PreferredSize(
-                  preferredSize: const Size.fromHeight(350),
-                  child: Header(
-                    job: "", //profile.subject,
-                    description: "", //profile.aboutMeShortTitle,
-                  ),
+            body: Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/images/background.jpg'),
+                  fit: BoxFit.cover,
                 ),
               ),
-              ..._slivers(),
-            ],
+              child: CustomScrollView(
+                controller: _scrollController,
+                slivers: [
+                  SliverAppBar(
+                    key: _headerGlobalKey,
+                    titleSpacing: 0,
+                    centerTitle: true,
+                    backgroundColor: Colors.transparent,
+                    leading: Builder(
+                      builder: (context) => IconButton(
+                        icon: const Icon(Icons.menu,
+                            color: AppColors.primaryColor),
+                        onPressed: () => Scaffold.of(context).openDrawer(),
+                      ),
+                    ),
+                    flexibleSpace: Container(
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/images/cover.png'),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.bottomCenter,
+                            end: Alignment.topCenter,
+                            colors: [
+                              Colors.black,
+                              Colors.black87,
+                              Colors.transparent
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    bottom: const PreferredSize(
+                      preferredSize: Size.fromHeight(400),
+                      child: Header(),
+                    ),
+                  ),
+                  ..._slivers(),
+                ],
+              ),
+            ),
+            floatingActionButton: _buildFab(),
           ),
-        ),
-        floatingActionButton: _buildFab(),
+        );
+      },
+      error: (error, stackTrace) => Center(
+        child: Text(error.toString()),
+      ),
+      loading: () => const Center(
+        child: CircularProgressIndicator(),
       ),
     );
   }

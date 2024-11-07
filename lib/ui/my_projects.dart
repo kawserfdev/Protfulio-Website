@@ -1,56 +1,70 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:profile/data/profile_model.dart';
+import 'package:profile/data/profile_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import 'responsive_widget.dart';
-import '../data/projects.dart';
 import '../constant/styles.dart';
 import '../constant/colors.dart';
 
-class MyProjects extends StatelessWidget {
+class MyProjects extends ConsumerWidget {
   const MyProjects({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return ResponsiveWidget(
-      desktopScreen: Container(
-        color: AppColors.greyLight,
-        padding: const EdgeInsets.symmetric(vertical: 100),
-        child: Column(
-          children: [
-            Text('MY PROJECTS', style: AppStyles.title),
-            Container(width: 100, height: 2, color: AppColors.primaryColor),
-            const SizedBox(height: 3),
-            Container(width: 75, height: 2, color: AppColors.primaryColor),
-            const SizedBox(height: 50),
-            ...PROJECTS.map((p) => _buildProject(context, p)),
-          ],
-        ),
+  Widget build(BuildContext context, WidgetRef ref) {
+    final profileRef = ref.watch(profileFetchProvider);
+    return profileRef.when(
+      data: (profile) {
+        return ResponsiveWidget(
+          desktopScreen: Container(
+            color: AppColors.greyLight,
+            padding: const EdgeInsets.symmetric(vertical: 100),
+            child: Column(
+              children: [
+                Text('MY PROJECTS', style: AppStyles.title),
+                Container(width: 100, height: 2, color: AppColors.primaryColor),
+                const SizedBox(height: 3),
+                Container(width: 75, height: 2, color: AppColors.primaryColor),
+                const SizedBox(height: 50),
+                ...profile.projectsList.map((p) => _buildProject(context, p)),
+              ],
+            ),
+          ),
+          mobileScreen: Container(
+            color: AppColors.greyLight,
+            padding: EdgeInsets.symmetric(
+              horizontal: MediaQuery.of(context).size.width * .15,
+              vertical: 50,
+            ),
+            child: Column(
+              children: [
+                Text(
+                  'MY PROJECTS',
+                  style: AppStyles.title,
+                  textAlign: TextAlign.center,
+                ),
+                Container(width: 75, height: 2, color: AppColors.primaryColor),
+                const SizedBox(height: 3),
+                Container(width: 50, height: 2, color: AppColors.primaryColor),
+                const SizedBox(height: 50),
+                Wrap(
+                  spacing: 5,
+                  runSpacing: 5,
+                  children: profile.projectsList
+                      .map((p) => _buildProject(context, p))
+                      .toList(),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+      error: (error, stackTrace) => Center(
+        child: Text(error.toString()),
       ),
-      mobileScreen: Container(
-        color: AppColors.greyLight,
-        padding: EdgeInsets.symmetric(
-          horizontal: MediaQuery.of(context).size.width * .15,
-          vertical: 50,
-        ),
-        child: Column(
-          children: [
-            Text(
-              'MY PROJECTS',
-              style: AppStyles.title,
-              textAlign: TextAlign.center,
-            ),
-            Container(width: 75, height: 2, color: AppColors.primaryColor),
-            const SizedBox(height: 3),
-            Container(width: 50, height: 2, color: AppColors.primaryColor),
-            const SizedBox(height: 50),
-            Wrap(
-              spacing: 5,
-              runSpacing: 5,
-              children: PROJECTS.map((p) => _buildProject(context, p)).toList(),
-            ),
-          ],
-        ),
+      loading: () => const Center(
+        child: CircularProgressIndicator(),
       ),
     );
   }
@@ -66,12 +80,14 @@ class MyProjects extends StatelessWidget {
                 children: [
                   SizedBox(
                     height: MediaQuery.of(context).size.width * .2,
-                    child: CachedNetworkImage(
-                      imageUrl: project.image!,
+                    child: Image.network(
+                      project.image,
                       fit: BoxFit.cover,
-                      placeholder: (context, url) =>
-                          const CircularProgressIndicator(),
-                      errorWidget: (context, url, error) =>
+                      loadingBuilder: (context, child, loadingProgress) {
+                        if (loadingProgress == null) return child;
+                        return const CircularProgressIndicator();
+                      },
+                      errorBuilder: (context, error, stackTrace) =>
                           const Icon(Icons.error),
                     ),
                   ),
@@ -83,17 +99,18 @@ class MyProjects extends StatelessWidget {
                         SizedBox(
                           height: MediaQuery.of(context).size.width * .01,
                         ),
-                        Text(project.name!, style: AppStyles.title),
+                        Text(project.name, style: AppStyles.title),
                         SizedBox(
                           height: MediaQuery.of(context).size.width * .01,
                         ),
-                        Text(project.description!),
+                        Text(project.description),
                         SizedBox(
                           height: MediaQuery.of(context).size.width * .025,
                         ),
                         Wrap(
                           spacing: 10,
-                          children: project.skills!
+                          runSpacing: 10,
+                          children: project.useTechnology
                               .map((s) => Chip(label: Text(s)))
                               .toList(),
                         ),
@@ -103,7 +120,7 @@ class MyProjects extends StatelessWidget {
                         OutlinedButton(
                           onPressed: () {
                             // ignore: deprecated_member_use
-                            launch(project.url!);
+                            launch(project.projectLink);
                           },
                           style: ButtonStyle(
                               padding: const WidgetStatePropertyAll(
@@ -150,7 +167,7 @@ class MyProjects extends StatelessWidget {
               SizedBox(
                 height: MediaQuery.of(context).size.width * .50,
                 child: CachedNetworkImage(
-                  imageUrl: project.image!,
+                  imageUrl: project.image,
                   fit: BoxFit.cover,
                   placeholder: (context, url) =>
                       const CircularProgressIndicator(),
@@ -161,12 +178,12 @@ class MyProjects extends StatelessWidget {
               SizedBox(
                 height: MediaQuery.of(context).size.width * .01,
               ),
-              Text(project.name!, style: AppStyles.title),
+              Text(project.name, style: AppStyles.title),
               SizedBox(
                 height: MediaQuery.of(context).size.width * .01,
               ),
               Text(
-                project.description!,
+                project.description,
                 textAlign: TextAlign.center,
               ),
               SizedBox(
@@ -174,9 +191,11 @@ class MyProjects extends StatelessWidget {
               ),
               Wrap(
                 spacing: 10,
+                runSpacing: 10,
                 alignment: WrapAlignment.center,
-                children:
-                    project.skills!.map((s) => Chip(label: Text(s))).toList(),
+                children: project.useTechnology
+                    .map((s) => Chip(label: Text(s)))
+                    .toList(),
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.width * .025,
@@ -184,7 +203,7 @@ class MyProjects extends StatelessWidget {
               OutlinedButton(
                 onPressed: () {
                   // ignore: deprecated_member_use
-                  launch(project.url!);
+                  launch(project.projectLink);
                 },
                 style: ButtonStyle(
                     padding: const WidgetStatePropertyAll(

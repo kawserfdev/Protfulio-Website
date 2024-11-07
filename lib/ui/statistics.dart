@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-
-import '../data/projects.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:profile/data/profile_provider.dart';
 import 'responsive_widget.dart';
 import 'icon.dart';
 
-class Statistics extends StatelessWidget {
+class Statistics extends ConsumerWidget {
   const Statistics({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return ResponsiveWidget(
+  Widget build(BuildContext context,WidgetRef ref) {
+    final profileRef = ref.watch(profileFetchProvider);
+    return profileRef.when(data: (profile) {
+      return ResponsiveWidget(
       desktopScreen: Container(
         height: 400,
         color: Colors.black.withOpacity(.7),
@@ -21,7 +23,7 @@ class Statistics extends StatelessWidget {
           _buildStatistic(context, "assets/images/experence.png", '2.5+',
               'Years of Experience'),
           _buildStatistic(context, "assets/images/complete_order.png",
-              '${PROJECTS.length}+', 'Projects Done'),
+              '${profile.projectsList.length}+', 'Projects Done'),
           _buildStatistic(
               context, "assets/images/happy_clint.png", '4+', 'Happy Clients'),
           _buildStatistic(
@@ -40,7 +42,7 @@ class Statistics extends StatelessWidget {
                 'Years of Experience'),
             const SizedBox(height: 50),
             _buildStatistic(context, "assets/images/complete_order.png",
-                '${PROJECTS.length}+', 'Projects Done'),
+                '${profile.projectsList.length}+', 'Projects Done'),
             const SizedBox(height: 50),
             _buildStatistic(context, "assets/images/happy_clint.png", '4+',
                 'Happy Clients'),
@@ -51,6 +53,10 @@ class Statistics extends StatelessWidget {
         ),
       ),
     );
+    }, error: (error, stackTrace) => Center(
+              child: Text(error.toString()),
+            ),
+        loading: () =>const Center(child: CircularProgressIndicator(),),);
   }
 
   Widget _buildStatistic(

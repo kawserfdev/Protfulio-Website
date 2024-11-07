@@ -10,13 +10,14 @@ final profileFetchProvider = FutureProvider<Profile>((ref) async {
         .get();
 
     if (doc.exists) {
-      print('Document data: ${doc.data()}'); // Debugging line
-      return Profile.fromMap(doc.data()!);
+      final Map<String, dynamic> data = Map<String, dynamic>.from(doc.data()!);
+      print('Document data: $data'); 
+      return Profile.fromMap(data);
     } else {
       throw Exception('Profile not found');
     }
   } catch (e) {
-    print('Error fetching profile: $e'); // Debugging line
+    print('Error fetching profile: $e'); 
     throw Exception('Failed to fetch profile data');
   }
 });

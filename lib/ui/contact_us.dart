@@ -1,23 +1,22 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mailto/mailto.dart';
+import 'package:profile/data/profile_provider.dart';
 import 'package:profile/ui/icon.dart';
-
 import 'responsive_widget.dart';
-import '../constant/constants.dart';
 import '../constant/styles.dart';
 import '../constant/colors.dart';
 import '../utils/extensions.dart';
 
-class ContactUs extends StatefulWidget {
+class ContactUs extends ConsumerStatefulWidget {
   const ContactUs({super.key});
 
   @override
-  _ContactUsState createState() => _ContactUsState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _ContactUsState();
 }
 
-class _ContactUsState extends State<ContactUs> {
+class _ContactUsState extends ConsumerState<ContactUs> {
   final _formKey = GlobalKey<FormState>();
 
   final _nameController = TextEditingController(),
@@ -26,104 +25,118 @@ class _ContactUsState extends State<ContactUs> {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveWidget(
-      desktopScreen: Container(
-        color: Colors.white,
-        padding: EdgeInsets.symmetric(
-          horizontal: MediaQuery.of(context).size.width * .15,
-          vertical: 100,
-        ),
-        child: Column(
-          children: [
-            Text('GET IN TOUCH', style: AppStyles.title),
-            Container(width: 100, height: 2, color: AppColors.primaryColor),
-            const SizedBox(height: 3),
-            Container(width: 75, height: 2, color: AppColors.primaryColor),
-            const SizedBox(height: 50),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: Column(
+    final profileRef = ref.watch(profileFetchProvider);
+    return profileRef.when(
+        data: (profile) {
+          return ResponsiveWidget(
+            desktopScreen: Container(
+              color: Colors.white,
+              padding: EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width * .15,
+                vertical: 100,
+              ),
+              child: Column(
+                children: [
+                  Text('GET IN TOUCH', style: AppStyles.title),
+                  Container(
+                      width: 100, height: 2, color: AppColors.primaryColor),
+                  const SizedBox(height: 3),
+                  Container(
+                      width: 75, height: 2, color: AppColors.primaryColor),
+                  const SizedBox(height: 50),
+                  Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      _buildContactInfo(
-                        'assets/images/email.png',
-                        'Mail Us:',
-                        AppConstants.mail,
+                      Expanded(
+                        child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          _buildContactInfo(
+                            'assets/images/email.png',
+                            'Mail Us:',
+                            profile.email,
+                          ),
+                          const SizedBox(height: 20),
+                          _buildContactInfo(
+                            'assets/images/phone.png',
+                            'Call Us:',
+                            profile.phone,
+                          ),
+                          const SizedBox(height: 20),
+                          _buildContactInfo(
+                            'assets/images/site.png',
+                            'Visit Us:',
+                            profile.address,
+                          ),
+                        ],
                       ),
-                      const SizedBox(height: 20),
-                      _buildContactInfo(
-                        'assets/images/phone.png',
-                        'Call Us:',
-                        AppConstants.phone,
                       ),
-                      const SizedBox(height: 20),
-                      _buildContactInfo(
-                        'assets/images/site.png',
-                        'Visit Us:',
-                        AppConstants.location,
+                      Expanded(
+                        child: _buildContactForm(context),
                       ),
                     ],
-                  ),
-                ),
-                Expanded(
-                  child: _buildContactForm(context),
-                ),
-              ],
-            )
-          ],
-        ),
-      ),
-      mobileScreen: Container(
-        color: Colors.white,
-        padding: EdgeInsets.symmetric(
-          horizontal: MediaQuery.of(context).size.width * .15,
-          vertical: 100,
-        ),
-        child: Column(
-          children: [
-            Text(
-              'GET IN TOUCH',
-              style: AppStyles.title,
-              textAlign: TextAlign.center,
+                  )
+                ],
+              ),
             ),
-            Container(width: 75, height: 2, color: AppColors.primaryColor),
-            const SizedBox(height: 3),
-            Container(width: 50, height: 2, color: AppColors.primaryColor),
-            const SizedBox(height: 50),
-            Column(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _buildContactInfo(
-                      'assets/images/email.png',
-                      'Mail Us:',
-                      AppConstants.mail,
-                    ),
-                    const SizedBox(height: 20),
-                    _buildContactInfo(
-                      'assets/images/phone.png',
-                      'Call Us:',
-                      AppConstants.phone,
-                    ),
-                    const SizedBox(height: 20),
-                    _buildContactInfo(
-                      'assets/images/site.png',
-                      'Visit Us:',
-                      AppConstants.location,
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 50),
-                _buildContactForm(context),
-              ],
-            )
-          ],
-        ),
+            mobileScreen: Container(
+              color: Colors.white,
+              padding: EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width * .15,
+                vertical: 100,
+              ),
+              child: Column(
+                children: [
+                  Text(
+                    'GET IN TOUCH',
+                    style: AppStyles.title,
+                    textAlign: TextAlign.center,
+                  ),
+                  Container(
+                      width: 75, height: 2, color: AppColors.primaryColor),
+                  const SizedBox(height: 3),
+                  Container(
+                      width: 50, height: 2, color: AppColors.primaryColor),
+                  const SizedBox(height: 50),
+                  Column(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          _buildContactInfo(
+                            'assets/images/email.png',
+                            'Mail Us:',
+                            profile.email,
+                          ),
+                          const SizedBox(height: 20),
+                          _buildContactInfo(
+                            'assets/images/phone.png',
+                            'Call Us:',
+                            profile.phone,
+                          ),
+                          const SizedBox(height: 20),
+                          _buildContactInfo(
+                            'assets/images/site.png',
+                            'Visit Us:',
+                            profile.address,
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 50),
+                      _buildContactForm(context),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          );
+        },
+         error: (error, stackTrace) => Center(
+        child: Text(error.toString()),
       ),
-    );
+      loading: () => const Center(
+        child: CircularProgressIndicator(),
+      ),);
   }
 
   Widget _buildContactInfo(String imagePath, String title, String content) {
@@ -160,7 +173,7 @@ class _ContactUsState extends State<ContactUs> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text(
-          'Have Something To Write?',
+          'Have Something To Write? Coming Soon',
           style: TextStyle(
             color: AppColors.black,
             fontSize: 20,
@@ -248,7 +261,7 @@ class _ContactUsState extends State<ContactUs> {
     if (!isValidForm) return;
 
     final mailto = Mailto(
-      to: [AppConstants.mail],
+      to: ["kawserahmed5459@gmail.com"],
       subject: _nameController.text.trim(),
       body: _contentController.text.trim(),
     );
