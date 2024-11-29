@@ -64,8 +64,8 @@ class Header extends ConsumerWidget {
                     )),
                   ),
                   onPressed: () {
-                      launch(profile.cvLink);
-                    },
+                    launch(profile.cvLink);
+                  },
                   child: Text(
                     'Download CV',
                     style: TextStyle(color: AppColors.greyLight),
@@ -106,13 +106,31 @@ class Header extends ConsumerWidget {
                       profile.aboutMe,
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             color: Colors.grey[100],
-                            fontSize: 15,
-                            height: 1.8,
+                            height: 1.5,
                           ),
                       textAlign: TextAlign.center,
                     ),
                   ),
                   const SizedBox(height: 30),
+                  // ElevatedButton(
+                  //   onPressed: () {
+                  //     launch(profile.cvLink);
+                  //   },
+                  //   style: const ButtonStyle(
+                  //     padding: WidgetStatePropertyAll(
+                  //       EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                  //     ),
+                  //     backgroundColor:
+                  //         WidgetStatePropertyAll(AppColors.primaryColor),
+                  //     textStyle: WidgetStatePropertyAll(TextStyle(
+                  //       color: Colors.white,
+                  //     )),
+                  //   ),
+                  //   child: Text(
+                  //     'Download CV',
+                  //     style: TextStyle(color: AppColors.greyLight),
+                  //   ),
+                  // ),
                   ElevatedButton(
                     style: const ButtonStyle(
                       padding: WidgetStatePropertyAll(

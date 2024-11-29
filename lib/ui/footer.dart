@@ -138,7 +138,7 @@ class Footer extends ConsumerWidget {
                         ),
                         const SizedBox(height: 20),
                         Text(
-                          profile.aboutMe,
+                          profile.aboutMeShortTitle,
                           style: TextStyle(
                             color: AppColors.greyLight,
                             fontSize: 13,
@@ -315,7 +315,7 @@ class Footer extends ConsumerWidget {
                   ),
                   const SizedBox(height: 20),
                   Text(
-                    profile.aboutMe,
+                    profile.aboutMeShortTitle,
                     style: TextStyle(
                       color: AppColors.greyLight,
                       fontSize: 13,

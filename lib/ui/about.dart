@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:profile/data/profile_provider.dart';
@@ -6,13 +7,25 @@ import 'package:url_launcher/url_launcher.dart';
 import '../constant/styles.dart';
 import '../constant/colors.dart';
 
-class About extends ConsumerWidget {
-  final String _avatar = 'assets/images/me.jpg';
-
+class About extends ConsumerStatefulWidget {
   const About({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() => _AboutState();
+}
+
+class _AboutState extends ConsumerState<About> {
+  final _contactUsGlobaleKey = GlobalKey();
+  final String _avatar = 'assets/images/me.jpg';
+  void _scrollToContactUs() {
+    Scrollable.ensureVisible(
+      _contactUsGlobaleKey.currentContext!,
+      duration: const Duration(seconds: 1),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final profileRef = ref.watch(profileFetchProvider);
     return profileRef.when(
       data: (profile) {
@@ -59,14 +72,15 @@ class About extends ConsumerWidget {
                                 .bodyMedium!
                                 .copyWith(
                                   color: Colors.black.withOpacity(.7),
-                                  fontSize: 17,
                                 ),
                           ),
                           const SizedBox(height: 30),
                           Row(
                             children: [
                               ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  _scrollToContactUs();
+                                },
                                 style: const ButtonStyle(
                                   padding: WidgetStatePropertyAll(
                                     EdgeInsets.symmetric(
@@ -85,7 +99,7 @@ class About extends ConsumerWidget {
                               ),
                               const SizedBox(width: 20),
                               ElevatedButton(
-                                onPressed: (){
+                                onPressed: () {
                                   launch(profile.cvLink);
                                 },
                                 style: const ButtonStyle(
@@ -127,17 +141,22 @@ class About extends ConsumerWidget {
                           .map((skill) => Chip(
                               avatar: SizedBox(
                                 height: MediaQuery.of(context).size.width * .01,
-                                child: Image.network(
-                                  skill.image,
-                                  fit: BoxFit.cover,
-                                  loadingBuilder:
-                                      (context, child, loadingProgress) {
-                                    if (loadingProgress == null) return child;
-                                    return const CircularProgressIndicator();
-                                  },
-                                  errorBuilder: (context, error, stackTrace) =>
-                                      const Icon(Icons.error),
+                                child: CachedNetworkImage(
+                                  imageUrl: skill.image,
+                                  errorWidget: (context, url, error) =>
+                                      const Center(child: Icon(Icons.error)),
                                 ),
+                                //  Image.network(
+                                //   skill.image,
+                                //   fit: BoxFit.cover,
+                                //   loadingBuilder:
+                                //       (context, child, loadingProgress) {
+                                //     if (loadingProgress == null) return child;
+                                //     return const CircularProgressIndicator();
+                                //   },
+                                //   errorBuilder: (context, error, stackTrace) =>
+                                //       const Icon(Icons.error),
+                                // ),
                               ),
                               label: Text(skill.skill,
                                   style: const TextStyle(
@@ -183,13 +202,15 @@ class About extends ConsumerWidget {
                   profile.aboutMeShortTitle,
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         color: Colors.black.withOpacity(.7),
-                        fontSize: 13,
+                        
                       ),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 30),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    _scrollToContactUs();
+                  },
                   style: const ButtonStyle(
                       padding: WidgetStatePropertyAll(
                         EdgeInsets.symmetric(horizontal: 30, vertical: 20),
@@ -206,7 +227,7 @@ class About extends ConsumerWidget {
                 ),
                 const SizedBox(height: 20),
                 ElevatedButton(
-                  onPressed: (){
+                  onPressed: () {
                     launch(profile.cvLink);
                   },
                   style: const ButtonStyle(
@@ -229,35 +250,35 @@ class About extends ConsumerWidget {
                 const SizedBox(height: 3),
                 Container(width: 50, height: 2, color: AppColors.primaryColor),
                 const SizedBox(height: 25),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Wrap(
-                      spacing: 5,
-                      runSpacing: 5,
-                      children: profile.skills
-                          .map((skill) => Chip(
-                              avatar: SizedBox(
-                                height: MediaQuery.of(context).size.width * .04,
-                                child: Image.network(
-                                  skill.image,
-                                  fit: BoxFit.cover,
-                                  loadingBuilder:
-                                      (context, child, loadingProgress) {
-                                    if (loadingProgress == null) return child;
-                                    return const CircularProgressIndicator();
-                                  },
-                                  errorBuilder: (context, error, stackTrace) =>
-                                      const Icon(Icons.error),
-                                ),
-                              ),
-                              label: Text(skill.skill,
-                                  style: const TextStyle(
-                                      fontSize: 16,
-                                      color: AppColors.primaryColor))))
-                          .toList(),
-                    ),
-                  ],
+                Wrap(
+                  spacing: 5,
+                  runSpacing: 5,
+                  children: profile.skills
+                      .map((skill) => Chip(
+                          avatar: SizedBox(
+                            height: MediaQuery.of(context).size.width * .04,
+                            child: CachedNetworkImage(
+                              imageUrl: skill.image,
+                              errorWidget: (context, url, error) =>
+                                  const Center(child: Icon(Icons.error)),
+                            ),
+                            //  Image.network(
+                            //   skill.image,
+                            //   fit: BoxFit.cover,
+                            //   loadingBuilder:
+                            //       (context, child, loadingProgress) {
+                            //     if (loadingProgress == null) return child;
+                            //     return const CircularProgressIndicator();
+                            //   },
+                            //   errorBuilder: (context, error, stackTrace) =>
+                            //       const Icon(Icons.error),
+                            // ),
+                          ),
+                          label: Text(skill.skill,
+                              style: const TextStyle(
+                                  fontSize: 16,
+                                  color: AppColors.primaryColor))))
+                      .toList(),
                 ),
               ],
             ),
