@@ -426,28 +426,40 @@ class Footer extends ConsumerWidget {
           onTap: () async {
             launch(profile.githubLink);
           },
-          child: const AppIcon('assets/images/github.png', size: 16),
+          child: const Icon(
+            Icons.facebook_outlined,
+            color: Colors.white,
+          ),
         ),
         const SizedBox(width: 24),
         InkWell(
           onTap: () {
             launch(profile.linkedinLink);
           },
-          child: const AppIcon('assets/images/linkedin.png', size: 16),
+          child: const Icon(
+            Icons.facebook_outlined,
+            color: Colors.white,
+          ),
         ),
         const SizedBox(width: 24),
         InkWell(
           onTap: () {
             launch(profile.twitterLink);
           },
-          child: const AppIcon('assets/images/twitter.png', size: 16),
+          child: const Icon(
+            Icons.facebook_outlined,
+            color: Colors.white,
+          ),
         ),
         const SizedBox(width: 24),
         InkWell(
           onTap: () {
             launch(profile.fbLink);
           },
-          child: const AppIcon('assets/images/facebook.png', size: 16),
+          child: const Icon(
+            Icons.facebook_outlined,
+            color: Colors.white,
+          ),
         ),
       ];
 }

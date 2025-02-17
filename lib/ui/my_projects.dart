@@ -27,7 +27,7 @@ class MyProjects extends ConsumerWidget {
                 const SizedBox(height: 3),
                 Container(width: 75, height: 2, color: AppColors.primaryColor),
                 const SizedBox(height: 50),
-                ...profile.projectsList.map((p) => _buildProject(context, p)),
+                ...profile.projectsList.getRange(0, 6).map((p) => _buildProject(context, p)),
               ],
             ),
           ),
@@ -51,7 +51,7 @@ class MyProjects extends ConsumerWidget {
                 Wrap(
                   spacing: 5,
                   runSpacing: 5,
-                  children: profile.projectsList
+                  children: profile.projectsList.getRange(0, 6)
                       .map((p) => _buildProject(context, p))
                       .toList(),
                 ),
@@ -80,14 +80,12 @@ class MyProjects extends ConsumerWidget {
                 children: [
                   SizedBox(
                     height: MediaQuery.of(context).size.width * .2,
-                    child: Image.network(
-                      project.image,
+                    child: CachedNetworkImage(
+                      imageUrl: project.image,
                       fit: BoxFit.cover,
-                      loadingBuilder: (context, child, loadingProgress) {
-                        if (loadingProgress == null) return child;
-                        return const CircularProgressIndicator();
-                      },
-                      errorBuilder: (context, error, stackTrace) =>
+                      placeholder: (context, loadingProgress) =>
+                          const CircularProgressIndicator(),
+                      errorWidget: (context, url, error) =>
                           const Icon(Icons.error),
                     ),
                   ),
