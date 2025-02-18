@@ -27,7 +27,9 @@ class MyProjects extends ConsumerWidget {
                 const SizedBox(height: 3),
                 Container(width: 75, height: 2, color: AppColors.primaryColor),
                 const SizedBox(height: 50),
-                ...profile.projectsList.getRange(0, 6).map((p) => _buildProject(context, p)),
+                ...profile.projectsList
+                    .getRange(0, 6)
+                    .map((p) => _buildProject(context, p)),
               ],
             ),
           ),
@@ -51,7 +53,8 @@ class MyProjects extends ConsumerWidget {
                 Wrap(
                   spacing: 5,
                   runSpacing: 5,
-                  children: profile.projectsList.getRange(0, 6)
+                  children: profile.projectsList
+                      .getRange(0, 6)
                       .map((p) => _buildProject(context, p))
                       .toList(),
                 ),
@@ -83,10 +86,10 @@ class MyProjects extends ConsumerWidget {
                     child: CachedNetworkImage(
                       imageUrl: project.image,
                       fit: BoxFit.cover,
-                      placeholder: (context, loadingProgress) =>
+                      placeholder: (context, url) =>
                           const CircularProgressIndicator(),
                       errorWidget: (context, url, error) =>
-                          const Icon(Icons.error),
+                          const Icon(Icons.hide_image_outlined),
                     ),
                   ),
                   SizedBox(width: MediaQuery.of(context).size.width * .075),
@@ -167,9 +170,10 @@ class MyProjects extends ConsumerWidget {
                 child: CachedNetworkImage(
                   imageUrl: project.image,
                   fit: BoxFit.cover,
-                  placeholder: (context, url) =>
-                      const CircularProgressIndicator(),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                   placeholder: (context, url) =>
+                                    const CircularProgressIndicator(),
+                                errorWidget: (context, url, error) =>
+                                    const Icon(Icons.hide_image_outlined),
                 ),
               ),
               SizedBox(width: MediaQuery.of(context).size.width * .075),

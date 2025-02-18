@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:profile/data/profile_model.dart';
 import 'package:profile/data/profile_provider.dart';
+import 'package:profile/ui/icon.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'responsive_widget.dart';
 import '../constant/colors.dart';
-import 'icon.dart';
 
 class Footer extends ConsumerWidget {
   final String _getInTouch =
@@ -402,8 +402,10 @@ class Footer extends ConsumerWidget {
             child: CachedNetworkImage(
               imageUrl: project.image,
               fit: BoxFit.cover,
-              placeholder: (context, url) => const CircularProgressIndicator(),
-              errorWidget: (context, url, error) => const Icon(Icons.error),
+               placeholder: (context, url) =>
+                                    const CircularProgressIndicator(),
+                                errorWidget: (context, url, error) =>
+                                    const Icon(Icons.hide_image_outlined),
             ),
           ),
           mobileScreen: Container(
@@ -415,7 +417,8 @@ class Footer extends ConsumerWidget {
               imageUrl: project.image,
               fit: BoxFit.cover,
               placeholder: (context, url) => const CircularProgressIndicator(),
-              errorWidget: (context, url, error) => const Icon(Icons.error),
+              errorWidget: (context, url, error) =>
+                  const Icon(Icons.hide_image_outlined),
             ),
           ),
         ),
@@ -426,9 +429,10 @@ class Footer extends ConsumerWidget {
           onTap: () async {
             launch(profile.githubLink);
           },
-          child: const Icon(
-            Icons.facebook_outlined,
-            color: Colors.white,
+          child: const CircleAvatar(
+            radius: 16,
+            backgroundColor: Colors.black,
+            child: AppIcon('assets/images/github.png', size: 16),
           ),
         ),
         const SizedBox(width: 24),
@@ -436,9 +440,10 @@ class Footer extends ConsumerWidget {
           onTap: () {
             launch(profile.linkedinLink);
           },
-          child: const Icon(
-            Icons.facebook_outlined,
-            color: Colors.white,
+          child: const CircleAvatar(
+            radius: 16,
+            backgroundColor: Colors.black,
+            child: AppIcon('assets/images/linkedin.png', size: 16),
           ),
         ),
         const SizedBox(width: 24),
@@ -446,9 +451,10 @@ class Footer extends ConsumerWidget {
           onTap: () {
             launch(profile.twitterLink);
           },
-          child: const Icon(
-            Icons.facebook_outlined,
-            color: Colors.white,
+          child: const CircleAvatar(
+            radius: 16,
+            backgroundColor: Colors.black,
+            child: AppIcon('assets/images/twitter.png', size: 16),
           ),
         ),
         const SizedBox(width: 24),
@@ -456,9 +462,10 @@ class Footer extends ConsumerWidget {
           onTap: () {
             launch(profile.fbLink);
           },
-          child: const Icon(
-            Icons.facebook_outlined,
-            color: Colors.white,
+          child: const CircleAvatar(
+            radius: 16,
+            backgroundColor: Colors.black,
+            child: AppIcon('assets/images/facebook.png', size: 16),
           ),
         ),
       ];

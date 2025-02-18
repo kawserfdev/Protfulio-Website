@@ -53,7 +53,7 @@ class _HomeState extends ConsumerState<Home> {
             body: Container(
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/images/cover.jpg'),
+                  image: AssetImage('images/cover.jpg'),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -68,7 +68,7 @@ class _HomeState extends ConsumerState<Home> {
                     flexibleSpace: Container(
                       decoration: const BoxDecoration(
                         image: DecorationImage(
-                          image: AssetImage('assets/images/background.jpg'),
+                          image: AssetImage('images/background.jpg'),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -204,7 +204,7 @@ class _HomeState extends ConsumerState<Home> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(1000),
                         child: Image.asset(
-                          'assets/images/background.jpg',
+                          'images/background.jpg',
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -284,7 +284,7 @@ class _HomeState extends ConsumerState<Home> {
                             radius: 16,
                             backgroundColor: Colors.black,
                             child:
-                                AppIcon('assets/images/github.png', size: 16),
+                                AppIcon('assets/images/github.png', size: 20),
                           ),
                         ),
                         const SizedBox(width: 24),
@@ -296,7 +296,7 @@ class _HomeState extends ConsumerState<Home> {
                             radius: 16,
                             backgroundColor: Colors.black,
                             child:
-                                AppIcon('assets/images/linkedin.png', size: 16),
+                                AppIcon('assets/images/linkedin.png', size: 20),
                           ),
                         ),
                         const SizedBox(width: 24),
@@ -333,7 +333,7 @@ class _HomeState extends ConsumerState<Home> {
             body: Container(
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/images/background.jpg'),
+                  image: AssetImage('images/background.jpg'),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -386,8 +386,8 @@ class _HomeState extends ConsumerState<Home> {
           ),
         );
       },
-      error: (error, stackTrace) => Center(
-        child: Text(error.toString()),
+      error: (error, stackTrace) =>const Center(
+        child: Text("Data Not Found"),
       ),
       loading: () => const Center(
         child: CircularProgressIndicator(),
