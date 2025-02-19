@@ -1,6 +1,5 @@
 // ignore_for_file: deprecated_member_use
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:profile/data/profile_model.dart';
@@ -174,7 +173,7 @@ class Footer extends ConsumerWidget {
                         Wrap(
                           spacing: 10,
                           runSpacing: 10,
-                          children: profile.projectsList
+                          children: projects
                               .take(4)
                               .map((p) => _buildProject(context, p))
                               .toList(),
@@ -349,7 +348,7 @@ class Footer extends ConsumerWidget {
                   Wrap(
                     spacing: 10,
                     runSpacing: 10,
-                    children: profile.projectsList
+                    children: projects
                         .take(4)
                         .map((p) => _buildProject(context, p))
                         .toList(),
@@ -399,27 +398,37 @@ class Footer extends ConsumerWidget {
             padding: const EdgeInsets.all(15),
             width: MediaQuery.of(context).size.width * .1,
             height: MediaQuery.of(context).size.width * .1,
-            child: CachedNetworkImage(
-              imageUrl: project.image,
-              fit: BoxFit.cover,
-               placeholder: (context, url) =>
-                                    const CircularProgressIndicator(),
-                                errorWidget: (context, url, error) =>
-                                    const Icon(Icons.hide_image_outlined),
-            ),
+            child: Image.asset(
+                    project.image,
+                    fit: BoxFit.cover,
+                  )
+            
+            //  CachedNetworkImage(
+            //   imageUrl: project.image,
+            //   fit: BoxFit.cover,
+            //    placeholder: (context, url) =>
+            //                         const CircularProgressIndicator(),
+            //                     errorWidget: (context, url, error) =>
+            //                         const Icon(Icons.hide_image_outlined),
+            // ),
           ),
           mobileScreen: Container(
             color: AppColors.greyLight,
             padding: const EdgeInsets.all(15),
             width: MediaQuery.of(context).size.width * .2,
             height: MediaQuery.of(context).size.width * .2,
-            child: CachedNetworkImage(
-              imageUrl: project.image,
-              fit: BoxFit.cover,
-              placeholder: (context, url) => const CircularProgressIndicator(),
-              errorWidget: (context, url, error) =>
-                  const Icon(Icons.hide_image_outlined),
-            ),
+            child: Image.asset(
+                    project.image,
+                    fit: BoxFit.cover,
+                  )
+            
+            // CachedNetworkImage(
+            //   imageUrl: project.image,
+            //   fit: BoxFit.cover,
+            //   placeholder: (context, url) => const CircularProgressIndicator(),
+            //   errorWidget: (context, url, error) =>
+            //       const Icon(Icons.hide_image_outlined),
+            // ),
           ),
         ),
       );
@@ -432,7 +441,7 @@ class Footer extends ConsumerWidget {
           child: const CircleAvatar(
             radius: 16,
             backgroundColor: Colors.black,
-            child: AppIcon('assets/images/github.png', size: 16),
+            child: AppIcon('images/github.png', size: 16),
           ),
         ),
         const SizedBox(width: 24),
@@ -443,7 +452,7 @@ class Footer extends ConsumerWidget {
           child: const CircleAvatar(
             radius: 16,
             backgroundColor: Colors.black,
-            child: AppIcon('assets/images/linkedin.png', size: 16),
+            child: AppIcon('images/linkedin.png', size: 16),
           ),
         ),
         const SizedBox(width: 24),
@@ -454,7 +463,7 @@ class Footer extends ConsumerWidget {
           child: const CircleAvatar(
             radius: 16,
             backgroundColor: Colors.black,
-            child: AppIcon('assets/images/twitter.png', size: 16),
+            child: AppIcon('images/twitter.png', size: 16),
           ),
         ),
         const SizedBox(width: 24),
@@ -465,7 +474,7 @@ class Footer extends ConsumerWidget {
           child: const CircleAvatar(
             radius: 16,
             backgroundColor: Colors.black,
-            child: AppIcon('assets/images/facebook.png', size: 16),
+            child: AppIcon('images/facebook.png', size: 16),
           ),
         ),
       ];

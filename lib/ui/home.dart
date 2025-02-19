@@ -284,7 +284,7 @@ class _HomeState extends ConsumerState<Home> {
                             radius: 16,
                             backgroundColor: Colors.black,
                             child:
-                                AppIcon('assets/images/github.png', size: 20),
+                                AppIcon('images/github.png', size: 20),
                           ),
                         ),
                         const SizedBox(width: 24),
@@ -296,7 +296,7 @@ class _HomeState extends ConsumerState<Home> {
                             radius: 16,
                             backgroundColor: Colors.black,
                             child:
-                                AppIcon('assets/images/linkedin.png', size: 20),
+                                AppIcon('images/linkedin.png', size: 20),
                           ),
                         ),
                         const SizedBox(width: 24),
@@ -308,7 +308,7 @@ class _HomeState extends ConsumerState<Home> {
                             radius: 16,
                             backgroundColor: Colors.black,
                             child:
-                                AppIcon('assets/images/twitter.png', size: 16),
+                                AppIcon('images/twitter.png', size: 16),
                           ),
                         ),
                         const SizedBox(width: 24),
@@ -320,7 +320,7 @@ class _HomeState extends ConsumerState<Home> {
                             radius: 16,
                             backgroundColor: Colors.black,
                             child:
-                                AppIcon('assets/images/facebook.png', size: 16),
+                                AppIcon('images/facebook.png', size: 16),
                           ),
                         ),
                       ],
@@ -355,7 +355,7 @@ class _HomeState extends ConsumerState<Home> {
                     flexibleSpace: Container(
                       decoration: const BoxDecoration(
                         image: DecorationImage(
-                          image: AssetImage('assets/images/cover.png'),
+                          image: AssetImage('images/cover.png'),
                           fit: BoxFit.cover,
                         ),
                       ),

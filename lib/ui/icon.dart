@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class AppIcon extends StatelessWidget {
@@ -18,13 +17,10 @@ class AppIcon extends StatelessWidget {
       height: size,
       width: size,
       color: background,
-      child: CachedNetworkImage(
-        imageUrl: path,
-        //color: color,
-        fit: BoxFit.cover,
-        placeholder: (context, url) => const CircularProgressIndicator(),
-        errorWidget: (context, url, error) => const Icon(Icons.error),
-      ),
+      child: Image.asset(
+                    path,
+                    fit: BoxFit.cover,
+                  ),
     );
   }
 }

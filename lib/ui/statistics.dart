@@ -23,14 +23,14 @@ class Statistics extends ConsumerWidget {
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  _buildStatistic(context, "assets/images/experence.png",
+                  _buildStatistic(context, "images/experence.png",
                       '${profile.experienceTimeline}+', 'Years of Experience'),
-                  _buildStatistic(context, "assets/images/complete_order.png",
+                  _buildStatistic(context, "images/complete_order.png",
                       '${profile.projectsList.length}+', 'Projects Done'),
-                  _buildStatistic(context, "assets/images/happy_clint.png",
+                  _buildStatistic(context, "images/happy_clint.png",
                       '${profile.happyClients}', 'Happy Clients'),
                   _buildStatistic(
-                      context, "assets/images/coffe.png", '∞', 'Coffee Cups'),
+                      context, "images/coffe.png", '∞', 'Coffee Cups'),
                 ]),
           ),
           mobileScreen: Container(
@@ -41,17 +41,17 @@ class Statistics extends ConsumerWidget {
             ),
             child: Column(
               children: [
-                _buildStatistic(context, "assets/images/experence.png",
+                _buildStatistic(context, "images/experence.png",
                     '${profile.experienceTimeline}+', 'Years of Experience'),
                 const SizedBox(height: 50),
-                _buildStatistic(context, "assets/images/complete_order.png",
+                _buildStatistic(context, "images/complete_order.png",
                     '${profile.projectsList.length}+', 'Projects Done'),
                 const SizedBox(height: 50),
-                _buildStatistic(context, "assets/images/happy_clint.png",
+                _buildStatistic(context, "images/happy_clint.png",
                     '${profile.happyClients}', 'Happy Clients'),
                 const SizedBox(height: 50),
                 _buildStatistic(
-                    context, "assets/images/coffe.png", '∞', 'Coffee Cups'),
+                    context, "images/coffe.png", '∞', 'Coffee Cups'),
               ],
             ),
           ),
@@ -96,7 +96,7 @@ class Statistics extends ConsumerWidget {
       mobileScreen: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          AppIcon(background: Colors.transparent, icon, size: 132),
+          AppIcon(background: Colors.transparent, icon, size: 70),
           const SizedBox(height: 5),
           Text(
             total,

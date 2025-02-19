@@ -52,20 +52,20 @@ class _ContactUsState extends ConsumerState<ContactUs> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           _buildContactInfo(
-                            'assets/images/email.png',
-                            'Mail Us:',
+                            'images/email.png',
+                            'E-mail:',
                             profile.email,
                           ),
                           const SizedBox(height: 20),
                           _buildContactInfo(
-                            'assets/images/phone.png',
-                            'Call Us:',
+                            'images/phone.png',
+                            'Phone:',
                             profile.phone,
                           ),
                           const SizedBox(height: 20),
                           _buildContactInfo(
-                            'assets/images/site.png',
-                            'Visit Us:',
+                            'images/site.png',
+                            'Visit:',
                             profile.address,
                           ),
                         ],
@@ -104,20 +104,20 @@ class _ContactUsState extends ConsumerState<ContactUs> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           _buildContactInfo(
-                            'assets/images/email.png',
-                            'Mail Us:',
+                            'images/email.png',
+                            'E-mail:',
                             profile.email,
                           ),
                           const SizedBox(height: 20),
                           _buildContactInfo(
-                            'assets/images/phone.png',
-                            'Call Us:',
+                            'images/phone.png',
+                            'Phone:',
                             profile.phone,
                           ),
                           const SizedBox(height: 20),
                           _buildContactInfo(
-                            'assets/images/site.png',
-                            'Visit Us:',
+                            'images/site.png',
+                            'Visit:',
                             profile.address,
                           ),
                         ],

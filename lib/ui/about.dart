@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:profile/data/profile_provider.dart';
@@ -131,44 +130,24 @@ class _AboutState extends ConsumerState<About> {
                 const SizedBox(height: 3),
                 Container(width: 75, height: 2, color: AppColors.primaryColor),
                 const SizedBox(height: 50),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Wrap(
-                      spacing: 5,
-                      runSpacing: 5,
-                      children: profile.skills.map((skill) {
-                        print("Skill Images: ${skill.image}");
-                        return Chip(
-                            avatar: SizedBox(
-                              height: MediaQuery.of(context).size.width * .01,
-                              child: CachedNetworkImage(
-                                imageUrl: skill.image,
-                                fit: BoxFit.cover,
-                                placeholder: (context, url) =>
-                                    const CircularProgressIndicator(),
-                                errorWidget: (context, url, error) =>
-                                    const Icon(Icons.hide_image_outlined),
-                              ),
-                              //  Image.network(
-                              //   skill.image,
-                              //   fit: BoxFit.cover,
-                              //   loadingBuilder:
-                              //       (context, child, loadingProgress) {
-                              //     if (loadingProgress == null) return child;
-                              //     return const CircularProgressIndicator();
-                              //   },
-                              //   errorBuilder: (context, error, stackTrace) =>
-                              //       const Icon(Icons.error),
-                              // ),
-                            ),
-                            label: Text(skill.skill,
-                                style: const TextStyle(
-                                    fontSize: 18,
-                                    color: AppColors.primaryColor)));
-                      }).toList(),
-                    ),
-                  ],
+                Wrap(
+                  alignment: WrapAlignment.center,
+                  spacing: 5,
+                  runSpacing: 5,
+                  children: skillList.map((skill) {
+                    print("Skill Images: ${skill.image}");
+                    return Chip(
+                        avatar: SizedBox(
+                          height: MediaQuery.of(context).size.width * .02,
+                          child: Image.asset(
+                            skill.image,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        label: Text(skill.skill,
+                            style: const TextStyle(
+                                fontSize: 18, color: AppColors.primaryColor)));
+                  }).toList(),
                 ),
               ],
             ),
@@ -254,30 +233,18 @@ class _AboutState extends ConsumerState<About> {
                 Container(width: 50, height: 2, color: AppColors.primaryColor),
                 const SizedBox(height: 25),
                 Wrap(
-                  spacing: 5, 
+                  alignment: WrapAlignment.center,
+                  
+                  spacing: 5,
                   runSpacing: 5,
-                  children: profile.skills
+                  children: skillList
                       .map((skill) => Chip(
                           avatar: SizedBox(
                             height: MediaQuery.of(context).size.width * .04,
-                            child: CachedNetworkImage(
-                              imageUrl: skill.image,
-                              placeholder: (context, url) =>
-                                  const CircularProgressIndicator(),
-                              errorWidget: (context, url, error) =>
-                                  const Icon(Icons.hide_image_outlined),
+                            child: Image.asset(
+                              skill.image,
+                              fit: BoxFit.cover,
                             ),
-                            //  Image.network(
-                            //   skill.image,
-                            //   fit: BoxFit.cover,
-                            //   loadingBuilder:
-                            //       (context, child, loadingProgress) {
-                            //     if (loadingProgress == null) return child;
-                            //     return const CircularProgressIndicator();
-                            //   },
-                            //   errorBuilder: (context, error, stackTrace) =>
-                            //       const Icon(Icons.error),
-                            // ),
                           ),
                           label: Text(skill.skill,
                               style: const TextStyle(

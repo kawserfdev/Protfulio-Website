@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:profile/data/profile_model.dart';
@@ -27,7 +26,7 @@ class MyProjects extends ConsumerWidget {
                 const SizedBox(height: 3),
                 Container(width: 75, height: 2, color: AppColors.primaryColor),
                 const SizedBox(height: 50),
-                ...profile.projectsList
+                ...projects
                     .getRange(0, 6)
                     .map((p) => _buildProject(context, p)),
               ],
@@ -53,7 +52,7 @@ class MyProjects extends ConsumerWidget {
                 Wrap(
                   spacing: 5,
                   runSpacing: 5,
-                  children: profile.projectsList
+                  children: projects
                       .getRange(0, 6)
                       .map((p) => _buildProject(context, p))
                       .toList(),
@@ -82,16 +81,20 @@ class MyProjects extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: MediaQuery.of(context).size.width * .2,
-                    child: CachedNetworkImage(
-                      imageUrl: project.image,
-                      fit: BoxFit.cover,
-                      placeholder: (context, url) =>
-                          const CircularProgressIndicator(),
-                      errorWidget: (context, url, error) =>
-                          const Icon(Icons.hide_image_outlined),
-                    ),
-                  ),
+                      height: MediaQuery.of(context).size.width * .2,
+                      child: Image.asset(
+                        project.image,
+                        fit: BoxFit.cover,
+                      )
+                      //          CachedNetworkImage(
+                      //   imageUrl: project.image,
+                      //   fit: BoxFit.cover,
+                      //   placeholder: (context, url) =>
+                      //       const CircularProgressIndicator(),
+                      //   errorWidget: (context, url, error) =>
+                      //       const Icon(Icons.hide_image_outlined),
+                      // ),
+                      ),
                   SizedBox(width: MediaQuery.of(context).size.width * .075),
                   Expanded(
                     child: Column(
@@ -166,16 +169,20 @@ class MyProjects extends ConsumerWidget {
           child: Column(
             children: [
               SizedBox(
-                height: MediaQuery.of(context).size.width * .50,
-                child: CachedNetworkImage(
-                  imageUrl: project.image,
-                  fit: BoxFit.cover,
-                   placeholder: (context, url) =>
-                                    const CircularProgressIndicator(),
-                                errorWidget: (context, url, error) =>
-                                    const Icon(Icons.hide_image_outlined),
-                ),
-              ),
+                  height: MediaQuery.of(context).size.width * .50,
+                  child: Image.asset(
+                    project.image,
+                    fit: BoxFit.cover,
+                  )
+                  //  CachedNetworkImage(
+                  //   imageUrl: project.image,
+                  //   fit: BoxFit.cover,
+                  //    placeholder: (context, url) =>
+                  //                     const CircularProgressIndicator(),
+                  //                 errorWidget: (context, url, error) =>
+                  //                     const Icon(Icons.hide_image_outlined),
+                  // ),
+                  ),
               SizedBox(width: MediaQuery.of(context).size.width * .075),
               SizedBox(
                 height: MediaQuery.of(context).size.width * .01,
